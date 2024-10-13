@@ -50,19 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyD-j15d9UC0GjGMUnowW9S9txAzF6DBko0',
-    appId: '1:497364063395:android:7b97e546adf421480d9b16',
-    messagingSenderId: '497364063395',
-    projectId: 'vehicle-repair-4c3a4',
-    storageBucket: 'vehicle-repair-4c3a4.appspot.com',
+    apiKey: 'AIzaSyAjZSuo3I3ihbnMxJ2tmwGaUMGJopMeMqI',
+    appId: '1:105803479596:android:6d352c9f33b604ede06f89',
+    messagingSenderId: '105803479596',
+    projectId: 'mech-doc-be452',
+    storageBucket: 'mech-doc-be452.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDkmbglQBNvoo8P_NiznSdwXIpOaRU6YAg',
-    appId: '1:497364063395:ios:737107602751bf420d9b16',
-    messagingSenderId: '497364063395',
-    projectId: 'vehicle-repair-4c3a4',
-    storageBucket: 'vehicle-repair-4c3a4.appspot.com',
+    apiKey: 'AIzaSyDf-zuGXonbUq5eHrnRHs5RzzNGNbZCk38',
+    appId: '1:105803479596:ios:6c4adacf1ad515cde06f89',
+    messagingSenderId: '105803479596',
+    projectId: 'mech-doc-be452',
+    storageBucket: 'mech-doc-be452.appspot.com',
     iosBundleId: 'com.example.vehicleRepair',
   );
+
 }

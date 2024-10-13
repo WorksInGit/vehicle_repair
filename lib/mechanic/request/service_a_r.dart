@@ -15,6 +15,7 @@ class _ServiceARState extends State<ServiceAR> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: HexColor('222831'),
         body: Stack(
           children: [
             Column(
@@ -22,7 +23,7 @@ class _ServiceARState extends State<ServiceAR> {
                 Padding(
                   padding: EdgeInsets.only(top: 20.h, left: 30.w),
                   child: Row(
-                    children: [Icon(Icons.arrow_back_ios_new_outlined)],
+                    children: [Icon(Icons.arrow_back_ios_new_outlined,color: Colors.white,)],
                   ),
                 ),
                 SizedBox(
@@ -33,7 +34,7 @@ class _ServiceARState extends State<ServiceAR> {
                   height: 470.h,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20.r),
-                      color: HexColor('##CFE2FF')),
+                      color: HexColor('3d495b')),
                   child: Column(
                     children: [
                       SizedBox(
@@ -41,7 +42,7 @@ class _ServiceARState extends State<ServiceAR> {
                       ),
                       Text(
                         'Name',
-                        style: GoogleFonts.poppins(),
+                        style: GoogleFonts.poppins(color: Colors.white),
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 70.h, left: 20.w),
@@ -53,23 +54,23 @@ class _ServiceARState extends State<ServiceAR> {
                               children: [
                                 Text(
                                   'Problem',
-                                  style: GoogleFonts.poppins(),
+                                  style: GoogleFonts.poppins(color: Colors.white),
                                 ),
                                 Text(
                                   'Place',
-                                  style: GoogleFonts.poppins(),
+                                  style: GoogleFonts.poppins(color: Colors.white),
                                 ),
                                 Text(
                                   'Date',
-                                  style: GoogleFonts.poppins(),
+                                  style: GoogleFonts.poppins(color: Colors.white),
                                 ),
                                 Text(
                                   'Time',
-                                  style: GoogleFonts.poppins(),
+                                  style: GoogleFonts.poppins(color: Colors.white),
                                 ),
                                 Text(
                                   'Contact number',
-                                  style: GoogleFonts.poppins(),
+                                  style: GoogleFonts.poppins(color: Colors.white),
                                 ),
                               ],
                             ),
@@ -79,23 +80,23 @@ class _ServiceARState extends State<ServiceAR> {
                                 Text(
                                   'Fuel leaking',
                                   style: GoogleFonts.poppins(
-                                      fontWeight: FontWeight.w500),
+                                      fontWeight: FontWeight.w500,color: Colors.white),
                                 ),
                                 Text(
                                   ':Kozhikode beach road',
-                                  style: GoogleFonts.poppins(),
+                                  style: GoogleFonts.poppins(color: Colors.white),
                                 ),
                                 Text(
                                   ':12/05/2023',
-                                  style: GoogleFonts.poppins(),
+                                  style: GoogleFonts.poppins(color: Colors.white),
                                 ),
                                 Text(
                                   '10:00 am',
-                                  style: GoogleFonts.poppins(),
+                                  style: GoogleFonts.poppins(color: Colors.white),
                                 ),
                                 Text(
                                   ':0000000000',
-                                  style: GoogleFonts.poppins(),
+                                  style: GoogleFonts.poppins(color: Colors.white),
                                 ),
                               ],
                             )

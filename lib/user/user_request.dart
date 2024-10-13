@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:vehicle_repair/user/mech_bill.dart';
+import 'package:mech_doc/user/mech_bill.dart';
 
 class UserRequest extends StatefulWidget {
   const UserRequest({super.key});
@@ -31,7 +31,7 @@ class _UserRequestState extends State<UserRequest> {
                 height: 125.h,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: HexColor('#CFE2FF')),
+                    color: HexColor('3d495b')),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -43,19 +43,19 @@ class _UserRequestState extends State<UserRequest> {
                           children: [
                             Text(
                               'Name',
-                              style: GoogleFonts.poppins(),
+                              style: GoogleFonts.poppins(color: Colors.white),
                             ),
                             Text(
                               'Date',
-                              style: GoogleFonts.poppins(),
+                              style: GoogleFonts.poppins(color: Colors.white),
                             ),
                             Text(
                               'Time',
-                              style: GoogleFonts.poppins(),
+                              style: GoogleFonts.poppins(color: Colors.white),
                             ),
                             Text(
                               'Change oil & filter',
-                              style: GoogleFonts.poppins(),
+                              style: GoogleFonts.poppins(color: Colors.white),
                             )
                           ],
                         ),

@@ -1,3 +1,4 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,12 +17,19 @@ class _MechServiceState extends State<MechService> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: HexColor('#222831'),
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Text('Service',style: GoogleFonts.poppins(),),
+          title: Text(
+            'Service',
+            style: GoogleFonts.poppins(color: Colors.white),
+          ),
           centerTitle: true,
-          backgroundColor: HexColor('#CFE2FF'),
-          leading: Icon(Icons.arrow_back_ios_new_outlined),
+          backgroundColor: HexColor('#3d495b'),
+          leading: Icon(
+            Icons.arrow_back_ios_new_outlined,
+            color: Colors.white,
+          ),
         ),
         body: ListView.builder(
           itemCount: 1,
@@ -34,18 +42,21 @@ class _MechServiceState extends State<MechService> {
                   height: 300.h,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.r),
-                      color: HexColor('#CFE2FF')),
+                      color: HexColor('3d495b')),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Type puncture service'),
+                          Text(
+                            'Type puncture service',
+                            style: GoogleFonts.poppins(color: Colors.white),
+                          ),
                           SizedBox(
                             width: 100.w,
                           ),
-                          Icon(CupertinoIcons.delete_solid)
+                          Icon(EvaIcons.trash2,color: Colors.white)
                         ],
                       ),
                       Divider(
@@ -56,11 +67,11 @@ class _MechServiceState extends State<MechService> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Engine service'),
+                          Text('Engine service',style: GoogleFonts.poppins(color: Colors.white),),
                           SizedBox(
-                            width: 150.w,
+                            width: 155.w,
                           ),
-                          Icon(CupertinoIcons.delete_solid)
+                          Icon(EvaIcons.trash2,color: Colors.white)
                         ],
                       ),
                       Divider(
@@ -71,11 +82,11 @@ class _MechServiceState extends State<MechService> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Type puncture service'),
+                          Text('Type puncture service',style: GoogleFonts.poppins(color: Colors.white),),
                           SizedBox(
                             width: 103.w,
                           ),
-                          Icon(CupertinoIcons.delete_solid)
+                          Icon(EvaIcons.trash2,color: Colors.white)
                         ],
                       ),
                       Divider(
@@ -86,11 +97,11 @@ class _MechServiceState extends State<MechService> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Type puncture service'),
+                          Text('Type puncture service',style: GoogleFonts.poppins(color: Colors.white),),
                           SizedBox(
                             width: 104.w,
                           ),
-                          Icon(CupertinoIcons.delete_solid)
+                          Icon(EvaIcons.trash2,color: Colors.white)
                         ],
                       ),
                     ],
@@ -110,7 +121,7 @@ class _MechServiceState extends State<MechService> {
             );
           },
           child: Icon(
-            Icons.add,
+            EvaIcons.plusCircle,
             color: Colors.black,
             size: 45.sp,
           ),
@@ -118,7 +129,7 @@ class _MechServiceState extends State<MechService> {
               borderRadius: BorderRadius.circular(28.0.r),
               side: BorderSide(color: Colors.black)),
           elevation: 0,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.grey,
         ),
       ),
     );
@@ -136,13 +147,13 @@ class _AddServiceState extends State<AddService> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: HexColor('##CFE2FF'),
-      title: Text('Add service'),
+      backgroundColor: HexColor('#3d495b'),
+      title: Text('Add service',style: GoogleFonts.poppins(color: Colors.white),),
       actions: <Widget>[
         TextField(
           decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.transparent),
+                  borderSide: BorderSide(color: Colors.grey),
                   borderRadius: BorderRadius.circular(10.r)),
               border: InputBorder.none,
               filled: true,
@@ -172,7 +183,7 @@ class _AddServiceState extends State<AddService> {
             ),
           ),
         ),
-         SizedBox(
+        SizedBox(
           height: 30.h,
         ),
       ],

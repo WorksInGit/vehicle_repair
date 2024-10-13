@@ -15,7 +15,7 @@ class _AdminPaymentState extends State<AdminPayment> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: HexColor('#E8F1FF'),
+        backgroundColor: HexColor('222831'),
         body: Column(
           children: [
             Padding(
@@ -32,7 +32,8 @@ class _AdminPaymentState extends State<AdminPayment> {
             SizedBox(
               height: 20.h,
             ),
-            Expanded(child: ListView.builder(
+            Expanded(
+                child: ListView.builder(
               itemCount: 5,
               itemBuilder: (context, index) {
                 return Padding(
@@ -41,7 +42,7 @@ class _AdminPaymentState extends State<AdminPayment> {
                     child: Container(
                       width: 200.w,
                       height: 115.h,
-                      decoration: BoxDecoration(color: Colors.white),
+                      decoration: BoxDecoration(color: HexColor('3d495b')),
                       child: Row(
                         children: [
                           SizedBox(
@@ -54,45 +55,53 @@ class _AdminPaymentState extends State<AdminPayment> {
                               Text(
                                 'Name',
                                 style: GoogleFonts.poppins(
+                                    color: Colors.white,
                                     fontSize: 13.sp,
                                     fontWeight: FontWeight.w500),
                               ),
                               Row(
                                 children: [
                                   Icon(
-                                    Icons.currency_rupee_sharp
+                                    Icons.currency_rupee_sharp,
+                                    color: Colors.white,
                                   ),
                                   Text(
                                     '5455/-',
                                     style: GoogleFonts.poppins(
+                                        color: Colors.white,
                                         fontSize: 13.sp,
                                         fontWeight: FontWeight.w500),
                                   ),
                                 ],
                               ),
-                                 Text(
+                              Text(
                                 'Service',
                                 style: GoogleFonts.poppins(
+                                    color: Colors.white,
                                     fontSize: 13.sp,
                                     fontWeight: FontWeight.w500),
-                              ),   Text(
+                              ),
+                              Text(
                                 'Mechanic name',
                                 style: GoogleFonts.poppins(
+                                    color: Colors.white,
                                     fontSize: 13.sp,
                                     fontWeight: FontWeight.w500),
                               )
-                              
-                              
-                              
-
                             ],
                           ),
                           Spacer(),
                           Column(
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(right: 10.w,top: 10.h),
-                                child: Text('10/11/2023',style: GoogleFonts.poppins(),),
+                                padding:
+                                    EdgeInsets.only(right: 10.w, top: 10.h),
+                                child: Text(
+                                  '10/11/2023',
+                                  style: GoogleFonts.poppins(
+                                    color: Colors.white,
+                                  ),
+                                ),
                               )
                             ],
                           )

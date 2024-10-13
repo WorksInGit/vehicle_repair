@@ -16,15 +16,16 @@ class _MechRatingState extends State<MechRating> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: HexColor('222831'),
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Text(
             'Rating',
-            style: GoogleFonts.poppins(),
+            style: GoogleFonts.poppins(color: Colors.white),
           ),
           centerTitle: true,
-          backgroundColor: HexColor('#CFE2FF'),
-          leading: Icon(Icons.arrow_back_ios_new_outlined),
+          backgroundColor: HexColor('#222831'),
+          leading: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.white,),
         ),
         body: Column(
           children: [
@@ -33,7 +34,7 @@ class _MechRatingState extends State<MechRating> {
             ),
             Text(
               'The rating given to you',
-              style: GoogleFonts.poppins(fontWeight: FontWeight.w300),
+              style: GoogleFonts.poppins(fontWeight: FontWeight.w300,color: Colors.white),
             ),
             Expanded(
               child: ListView.builder(
@@ -48,7 +49,7 @@ class _MechRatingState extends State<MechRating> {
                         height: 130.h,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.r),
-                            color: HexColor('#CFE2FF')),
+                            color: HexColor('3d495b')),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -66,23 +67,23 @@ class _MechRatingState extends State<MechRating> {
                                     ),
                                     Text(
                                       'Name',
-                                      style: GoogleFonts.poppins(),
+                                      style: GoogleFonts.poppins(color: Colors.white),
                                     )
                                   ],
                                 ),
                                 Column(
                                   children: [
-                                    Text('Engine work'),
-                                    Text('Date'),
-                                    Text('Time'),
-                                    Text('Place'),
+                                    Text('Engine work',style: GoogleFonts.poppins(color: Colors.white),),
+                                    Text('Date',style: GoogleFonts.poppins(color: Colors.white),),
+                                    Text('Time',style: GoogleFonts.poppins(color: Colors.white),),
+                                    Text('Place',style: GoogleFonts.poppins(color: Colors.white),),
                                   ],
                                 ),
                                 Column(
                                   children: [
                                     Text(
                                       'Rating',
-                                      style: GoogleFonts.poppins(fontSize: 10.sp),
+                                      style: GoogleFonts.poppins(fontSize: 10.sp,color: Colors.white),
                                     ),
                                     Row(
                                       children: [
@@ -109,12 +110,13 @@ class _MechRatingState extends State<MechRating> {
                                         Icon(
                                           Icons.star_border,
                                           size: 15.sp,
+                                          color: Colors.white,
                                         ),
                                       ],
                                     ),
                                     Text(
                                       '4/5',
-                                      style: GoogleFonts.poppins(fontSize: 10.sp),
+                                      style: GoogleFonts.poppins(fontSize: 10.sp,color: Colors.white),
                                     )
                                   ],
                                 )

@@ -1,6 +1,6 @@
 {
-    "name": "vehicle_repair",
-    "short_name": "vehicle_repair",
+    "name": "mech_doc",
+    "short_name": "mech_doc",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

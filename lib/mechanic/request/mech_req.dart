@@ -1,11 +1,12 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:vehicle_repair/mechanic/request/mech_notification.dart';
-import 'package:vehicle_repair/mechanic/request/mech_req_1.dart';
-import 'package:vehicle_repair/mechanic/request/mech_req_2.dart';
-import 'package:vehicle_repair/mechanic/request/view_profile.dart';
+import 'package:mech_doc/mechanic/request/mech_notification.dart';
+import 'package:mech_doc/mechanic/request/mech_req_1.dart';
+import 'package:mech_doc/mechanic/request/mech_req_2.dart';
+import 'package:mech_doc/mechanic/request/view_profile.dart';
 
 class MechReq extends StatefulWidget {
   const MechReq({super.key});
@@ -20,7 +21,7 @@ class _MechReqState extends State<MechReq> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: HexColor('#222831'),
           body: Column(
             children: [
               Padding(
@@ -44,23 +45,18 @@ class _MechReqState extends State<MechReq> {
                     Padding(
                         padding: const EdgeInsets.only(right: 20),
                         child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => MechNotification(),
-                                ));
-                          },
-                          child: Container(
-                            width: 40.r,
-                            height: 40.r,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                              image:
-                                  AssetImage('assets/icons/notification.png'),
-                            )),
-                          ),
-                        ))
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MechNotification(),
+                                  ));
+                            },
+                            child: Icon(
+                              EvaIcons.messageSquare,
+                              color: Colors.white,
+                              size: 30.sp,
+                            )))
                   ],
                 ),
               ),
@@ -71,15 +67,19 @@ class _MechReqState extends State<MechReq> {
                 width: 350.w,
                 height: 50.h,
                 decoration: BoxDecoration(
-                    color: HexColor('##E8F1FF'),
+                    color: Colors.grey,
                     borderRadius: BorderRadius.circular(10)),
                 child: TabBar(
-                    dividerColor: Colors.white,
-                    labelStyle: GoogleFonts.poppins(color: Colors.black),
+                    dividerColor: Colors.transparent,
+                    labelStyle: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15.sp),
+                    unselectedLabelColor: HexColor('#222831'),
                     indicatorSize: TabBarIndicatorSize.tab,
                     indicator: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: HexColor('#CFE2FF'),
+                      color: HexColor('#3d495b'),
                     ),
                     tabs: [Tab(text: 'Request'), Tab(text: 'Accepted')]),
               ),

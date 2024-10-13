@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:vehicle_repair/admin/admin_login.dart';
-import 'package:vehicle_repair/mechanic/mech_login.dart';
-import 'package:vehicle_repair/user/user_login.dart';
-
+import 'package:mech_doc/admin/admin_login.dart';
+import 'package:mech_doc/mechanic/mech_login.dart';
+import 'package:mech_doc/user/user_login.dart';
 
 class UOrM extends StatefulWidget {
   const UOrM({super.key});
@@ -19,23 +18,10 @@ class _UOrMState extends State<UOrM> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: HexColor('#CFE2FF'),
+        backgroundColor: HexColor('#222831'),
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: EdgeInsets.only(top: 20.h, left: 30.w),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.arrow_back_ios_new,
-                    color: Colors.black,
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 100.h,
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -44,7 +30,7 @@ class _UOrMState extends State<UOrM> {
                   height: 150.h,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage('assets/icons/icon.png'),
+                          image: AssetImage('assets/icons/mechanic.png'),
                           fit: BoxFit.cover)),
                 ),
               ],
@@ -54,9 +40,11 @@ class _UOrMState extends State<UOrM> {
               child: Row(
                 children: [
                   Text(
-                    'Who you are',
+                    'Who you are ?',
                     style: GoogleFonts.dmSans(
-                        fontWeight: FontWeight.bold, fontSize: 15.sp),
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15.sp),
                   ),
                 ],
               ),
@@ -69,7 +57,7 @@ class _UOrMState extends State<UOrM> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(
+                    Navigator.push(context, MaterialPageRoute(
                       builder: (context) {
                         return MechLogin();
                       },
@@ -79,7 +67,7 @@ class _UOrMState extends State<UOrM> {
                     width: 300.w,
                     height: 50.h,
                     decoration: BoxDecoration(
-                        color: HexColor('#2357D9'),
+                        color: HexColor('3d495b'),
                         borderRadius: BorderRadius.circular(10.r)),
                     child: Padding(
                       padding: EdgeInsets.all(10.0.r),
@@ -103,20 +91,24 @@ class _UOrMState extends State<UOrM> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => UserLogin(),));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => UserLogin(),
+                        ));
                   },
                   child: Container(
                     width: 300.w,
                     height: 50.h,
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: HexColor('3d495b'),
                         borderRadius: BorderRadius.circular(10.r)),
                     child: Padding(
                       padding: EdgeInsets.all(10.0.r),
                       child: Text(
                         'User',
                         style: GoogleFonts.poppins(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontWeight: FontWeight.w500,
                             fontSize: 17.sp),
                       ),
@@ -126,39 +118,44 @@ class _UOrMState extends State<UOrM> {
               ],
             ),
             SizedBox(
-              height: 50.h,
+              height: 30.h,
             ),
-            TextButton(
-              onPressed: (){
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AdminLogin(),));
-              },
-              child: Text(
-              'Admin Login',
-              style: GoogleFonts.poppins(
-                  color: HexColor('##2357D9'),
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20.sp),
-              )
-            ),
-            Spacer(),
-            Container(
-              width: 200.w,
-              height: 50.h,
-              decoration: BoxDecoration(
-                  color: HexColor('#2357D9'),
-                  borderRadius: BorderRadius.circular(10.r)),
-              child: Center(
-                child: Text(
-                  'CONTINUE',
-                  style: GoogleFonts.poppins(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15.sp),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AdminLogin(),
+                        ));
+                  },
+                  child: Container(
+                    width: 300.w,
+                    height: 50.h,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white),
+                        color: HexColor('3d495b'),
+                        borderRadius: BorderRadius.circular(10.r)),
+                    child: Padding(
+                      padding: EdgeInsets.all(10.0.r),
+                      child: Center(
+                        child: Text(
+                          'Admin',
+                          style: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 17.sp),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
             SizedBox(
-              height: 40.h,
+              height: 50.h,
             ),
           ],
         ),

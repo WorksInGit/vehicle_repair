@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:vehicle_repair/mechanic/request/service_a_r.dart';
+import 'package:mech_doc/mechanic/request/service_a_r.dart';
 
 class MechReq1 extends StatefulWidget {
   const MechReq1({super.key});
@@ -28,7 +29,7 @@ class _MechReq1State extends State<MechReq1> {
                 height: 100.h,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: HexColor('##CFE2FF')),
+                    color: HexColor('#3d495b')),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -45,7 +46,7 @@ class _MechReq1State extends State<MechReq1> {
                               backgroundImage:
                                   AssetImage('assets/icons/boss.png'),
                             ),
-                            Text('Name')
+                            Text('Name',style: GoogleFonts.poppins(color: Colors.white),)
                           ],
                         ),
                         Spacer(),
@@ -53,10 +54,10 @@ class _MechReq1State extends State<MechReq1> {
                           padding: EdgeInsets.only(right: 30.w),
                           child: Column(
                             children: [
-                              Text('Fuel leaking'),
-                              Text('Date'),
-                              Text('Time'),
-                              Text('Place'),
+                              Text('Fuel leaking',style: GoogleFonts.poppins(color: Colors.white)),
+                              Text('Date',style: GoogleFonts.poppins(color: Colors.white)),
+                              Text('Time',style: GoogleFonts.poppins(color: Colors.white)),
+                              Text('Place',style: GoogleFonts.poppins(color: Colors.white)),
                             ],
                           ),
                         )

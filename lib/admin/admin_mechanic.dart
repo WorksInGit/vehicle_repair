@@ -1,12 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:vehicle_repair/admin/bottom_nav.dart';
 
 class AdminMechanic extends StatefulWidget {
-  const AdminMechanic({super.key});
+  final QueryDocumentSnapshot mechIndex;
+  const AdminMechanic({super.key, required this.mechIndex});
 
   @override
   State<AdminMechanic> createState() => _AdminMechanicState();
@@ -15,29 +15,43 @@ class AdminMechanic extends StatefulWidget {
 class _AdminMechanicState extends State<AdminMechanic> {
   @override
   Widget build(BuildContext context) {
+    String name = widget.mechIndex['username'];
+    String location = widget.mechIndex['location'];
+    String phoneNo = widget.mechIndex['phoneNumber'];
+    String _email = widget.mechIndex['email'];
+    String exp = widget.mechIndex['experience'];
+    String shopName = widget.mechIndex['shopName'];
+    String profile = widget.mechIndex['profile'];
     return SafeArea(
       child: Scaffold(
+        backgroundColor: HexColor('222831'),
         body: Column(
           children: [
             Padding(
               padding: EdgeInsets.only(top: 20.h, left: 20.w),
               child: Row(
-                children: [Icon(Icons.arrow_back_ios_new_outlined)],
+                children: [
+                  Icon(
+                    Icons.arrow_back_ios_new_outlined,
+                    color: Colors.white,
+                  )
+                ],
               ),
             ),
-            CircleAvatar(
-              radius: 40.r,
-              backgroundImage: AssetImage('assets/icons/worker.png'),
+            CircleAvatar(radius: 40.r, backgroundImage: NetworkImage(profile)),
+            Text(
+              name,
+              style: GoogleFonts.poppins(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15.sp),
             ),
             Text(
-              'Name',
+              location,
               style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.bold, fontSize: 15.sp),
-            ),
-            Text(
-              'Location',
-              style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.w500, fontSize: 15.sp),
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 15.sp),
             ),
             Padding(
               padding: EdgeInsets.only(left: 40.w, top: 5.h),
@@ -46,7 +60,9 @@ class _AdminMechanicState extends State<AdminMechanic> {
                   Text(
                     'Mech username',
                     style: GoogleFonts.dmSans(
-                        fontWeight: FontWeight.bold, fontSize: 13.sp),
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13.sp),
                   ),
                 ],
               ),
@@ -57,19 +73,15 @@ class _AdminMechanicState extends State<AdminMechanic> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 40.w),
               child: TextFormField(
+                readOnly: true,
+                initialValue: name,
                 decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10.r)),
-                    filled: true,
-                    fillColor: HexColor('#E8F1FF'),
-                    label: Text(
-                      'Username',
-                      style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w200,
-                          fontSize: 13.sp),
-                    )),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                      borderRadius: BorderRadius.circular(10.r)),
+                  filled: true,
+                  fillColor: HexColor('#E8F1FF'),
+                ),
               ),
             ),
             Padding(
@@ -79,7 +91,9 @@ class _AdminMechanicState extends State<AdminMechanic> {
                   Text(
                     'Phone number',
                     style: GoogleFonts.dmSans(
-                        fontWeight: FontWeight.bold, fontSize: 13.sp),
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13.sp),
                   ),
                 ],
               ),
@@ -90,19 +104,15 @@ class _AdminMechanicState extends State<AdminMechanic> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 40.w),
               child: TextFormField(
+                readOnly: true,
+                initialValue: phoneNo,
                 decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10.r)),
-                    filled: true,
-                    fillColor: HexColor('#E8F1FF'),
-                    label: Text(
-                      '0000000000',
-                      style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w200,
-                          fontSize: 13.sp),
-                    )),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                      borderRadius: BorderRadius.circular(10.r)),
+                  filled: true,
+                  fillColor: HexColor('#E8F1FF'),
+                ),
               ),
             ),
             Padding(
@@ -112,7 +122,9 @@ class _AdminMechanicState extends State<AdminMechanic> {
                   Text(
                     'Email address',
                     style: GoogleFonts.dmSans(
-                        fontWeight: FontWeight.bold, fontSize: 13.sp),
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13.sp),
                   ),
                 ],
               ),
@@ -123,29 +135,27 @@ class _AdminMechanicState extends State<AdminMechanic> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 40.w),
               child: TextFormField(
+                initialValue: _email,
+                readOnly: true,
                 decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10.r)),
-                    filled: true,
-                    fillColor: HexColor('#E8F1FF'),
-                    label: Text(
-                      'Example@gmail.com',
-                      style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w200,
-                          fontSize: 13.sp),
-                    )),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                      borderRadius: BorderRadius.circular(10.r)),
+                  filled: true,
+                  fillColor: HexColor('#E8F1FF'),
+                ),
               ),
             ),
-              Padding(
+            Padding(
               padding: EdgeInsets.only(left: 40.w, top: 5.h),
               child: Row(
                 children: [
                   Text(
                     'Work experience',
                     style: GoogleFonts.dmSans(
-                        fontWeight: FontWeight.bold, fontSize: 13.sp),
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13.sp),
                   ),
                 ],
               ),
@@ -156,29 +166,27 @@ class _AdminMechanicState extends State<AdminMechanic> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 40.w),
               child: TextFormField(
+                initialValue: exp,
+                readOnly: true,
                 decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10.r)),
-                    filled: true,
-                    fillColor: HexColor('#E8F1FF'),
-                    label: Text(
-                      'Experience',
-                      style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w200,
-                          fontSize: 13.sp),
-                    )),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                      borderRadius: BorderRadius.circular(10.r)),
+                  filled: true,
+                  fillColor: HexColor('#E8F1FF'),
+                ),
               ),
             ),
-           Padding(
+            Padding(
               padding: EdgeInsets.only(left: 40.w, top: 5.h),
               child: Row(
                 children: [
                   Text(
                     'Work shop name',
                     style: GoogleFonts.dmSans(
-                        fontWeight: FontWeight.bold, fontSize: 15.sp),
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15.sp),
                   ),
                 ],
               ),
@@ -189,29 +197,27 @@ class _AdminMechanicState extends State<AdminMechanic> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 40.w),
               child: TextFormField(
+                initialValue: shopName,
+                readOnly: true,
                 decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10.r)),
-                    filled: true,
-                    fillColor: HexColor('#E8F1FF'),
-                    label: Text(
-                      'Shop name',
-                      style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w200,
-                          fontSize: 15.sp),
-                    )),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                      borderRadius: BorderRadius.circular(10.r)),
+                  filled: true,
+                  fillColor: HexColor('#E8F1FF'),
+                ),
               ),
             ),
-           Padding(
+            Padding(
               padding: EdgeInsets.only(left: 40.w, top: 5.h),
               child: Row(
                 children: [
                   Text(
                     'Your location',
                     style: GoogleFonts.dmSans(
-                        fontWeight: FontWeight.bold, fontSize: 15.sp),
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15.sp),
                   ),
                 ],
               ),
@@ -222,36 +228,32 @@ class _AdminMechanicState extends State<AdminMechanic> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 40.w),
               child: TextFormField(
+                initialValue: location,
+                readOnly: true,
                 decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10.r)),
-                    filled: true,
-                    fillColor: HexColor('#E8F1FF'),
-                    label: Text(
-                      'Enter your location',
-                      style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w200,
-                          fontSize: 13.sp),
-                    )),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                      borderRadius: BorderRadius.circular(10.r)),
+                  filled: true,
+                  fillColor: HexColor('#E8F1FF'),
+                ),
               ),
             ),
-         SizedBox(
-          height: 20.h,
-         ),
+            SizedBox(
+              height: 20.h,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
                   onTap: () {
-                  Navigator.pop(context);
+                    Navigator.pop(context);
                   },
                   child: Container(
                     width: 130.w,
                     height: 45.h,
                     decoration: BoxDecoration(
-                        color: HexColor('#73ABFF'),
+                        color: Colors.blue,
                         borderRadius: BorderRadius.circular(5.r)),
                     child: Center(
                       child: Text(
@@ -271,7 +273,7 @@ class _AdminMechanicState extends State<AdminMechanic> {
                   width: 130.w,
                   height: 45.h,
                   decoration: BoxDecoration(
-                      color: HexColor('#FF9F9D'),
+                      color: Colors.red,
                       borderRadius: BorderRadius.circular(5.r)),
                   child: Center(
                     child: Text(

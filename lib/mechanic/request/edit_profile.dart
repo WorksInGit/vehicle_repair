@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:vehicle_repair/mechanic/bottom_nav.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
@@ -31,6 +30,7 @@ class _EditProfileState extends State<EditProfile>
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: HexColor('222831'),
         body: Column(
           children: [
             Padding(
@@ -38,7 +38,7 @@ class _EditProfileState extends State<EditProfile>
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(Icons.arrow_back_ios_new_outlined),
+                  Icon(Icons.arrow_back_ios_new_outlined,color: Colors.white,),
                 ],
               ),
             ),
@@ -53,6 +53,7 @@ class _EditProfileState extends State<EditProfile>
                   Text(
                     'Name',
                     style: GoogleFonts.dmSans(
+                       color: Colors.white,
                         fontWeight: FontWeight.bold, fontSize: 15.sp),
                   ),
                 ],
@@ -66,11 +67,11 @@ class _EditProfileState extends State<EditProfile>
                         borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(10.r)),
                     filled: true,
-                    fillColor: HexColor('##E8F1FF'),
+                    fillColor: HexColor('3d495b'),
                     label: Text(
                       'Name',
                       style: GoogleFonts.poppins(
-                          color: Colors.black, fontWeight: FontWeight.w200),
+                          color: Colors.white, fontWeight: FontWeight.w200),
                     )),
               ),
             ),
@@ -81,6 +82,7 @@ class _EditProfileState extends State<EditProfile>
                   Text(
                     'Username',
                     style: GoogleFonts.dmSans(
+                      color: Colors.white,
                         fontWeight: FontWeight.bold, fontSize: 15.sp),
                   ),
                 ],
@@ -94,11 +96,11 @@ class _EditProfileState extends State<EditProfile>
                         borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(10.r)),
                     filled: true,
-                    fillColor: HexColor('##E8F1FF'),
+                    fillColor: HexColor('3d495b'),
                     label: Text(
                       'Username',
                       style: GoogleFonts.poppins(
-                          color: Colors.black, fontWeight: FontWeight.w200),
+                          color: Colors.white, fontWeight: FontWeight.w200),
                     )),
               ),
             ),
@@ -109,6 +111,7 @@ class _EditProfileState extends State<EditProfile>
                   Text(
                     'Phone number',
                     style: GoogleFonts.dmSans(
+                       color: Colors.white,
                         fontWeight: FontWeight.bold, fontSize: 15.sp),
                   ),
                 ],
@@ -123,11 +126,11 @@ class _EditProfileState extends State<EditProfile>
                         borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(10.r)),
                     filled: true,
-                    fillColor: HexColor('##E8F1FF'),
+                    fillColor: HexColor('3d495b'),
                     label: Text(
                       'Phone number',
                       style: GoogleFonts.poppins(
-                          color: Colors.black, fontWeight: FontWeight.w200),
+                          color: Colors.white, fontWeight: FontWeight.w200),
                     )),
               ),
             ),
@@ -138,6 +141,7 @@ class _EditProfileState extends State<EditProfile>
                   Text(
                     'Email',
                     style: GoogleFonts.dmSans(
+                       color: Colors.white,
                         fontWeight: FontWeight.bold, fontSize: 15.sp),
                   ),
                 ],
@@ -151,11 +155,11 @@ class _EditProfileState extends State<EditProfile>
                         borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(10.r)),
                     filled: true,
-                    fillColor: HexColor('##E8F1FF'),
+                    fillColor: HexColor('3d495b'),
                     label: Text(
                       'Enter email',
                       style: GoogleFonts.poppins(
-                          color: Colors.black, fontWeight: FontWeight.w200),
+                          color: Colors.white, fontWeight: FontWeight.w200),
                     )),
               ),
             ),
@@ -166,6 +170,7 @@ class _EditProfileState extends State<EditProfile>
                   Text(
                     'Work experience',
                     style: GoogleFonts.dmSans(
+                       color: Colors.white,
                         fontWeight: FontWeight.bold, fontSize: 15.sp),
                   ),
                 ],
@@ -179,11 +184,11 @@ class _EditProfileState extends State<EditProfile>
                         borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(10.r)),
                     filled: true,
-                    fillColor: HexColor('##E8F1FF'),
+                    fillColor: HexColor('3d495b'),
                     label: Text(
                       'Enter your experience',
                       style: GoogleFonts.poppins(
-                          color: Colors.black, fontWeight: FontWeight.w200),
+                          color: Colors.white, fontWeight: FontWeight.w200),
                     )),
               ),
             ),
@@ -194,6 +199,7 @@ class _EditProfileState extends State<EditProfile>
                   Text(
                     'Your location',
                     style: GoogleFonts.dmSans(
+                       color: Colors.white,
                         fontWeight: FontWeight.bold, fontSize: 15.sp),
                   ),
                 ],
@@ -207,11 +213,11 @@ class _EditProfileState extends State<EditProfile>
                         borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(10.r)),
                     filled: true,
-                    fillColor: HexColor('##E8F1FF'),
+                    fillColor: HexColor('3d495b'),
                     label: Text(
                       'Enter your location',
                       style: GoogleFonts.poppins(
-                          color: Colors.black, fontWeight: FontWeight.w200),
+                          color: Colors.white, fontWeight: FontWeight.w200),
                     )),
               ),
             ),
@@ -222,6 +228,7 @@ class _EditProfileState extends State<EditProfile>
                   Text(
                     'work shop name',
                     style: GoogleFonts.dmSans(
+                       color: Colors.white,
                         fontWeight: FontWeight.bold, fontSize: 15.sp),
                   ),
                 ],
@@ -235,11 +242,11 @@ class _EditProfileState extends State<EditProfile>
                         borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(10.r)),
                     filled: true,
-                    fillColor: HexColor('##E8F1FF'),
+                    fillColor: HexColor('3d495b'),
                     label: Text(
                       'Enter your shop name',
                       style: GoogleFonts.poppins(
-                          color: Colors.black, fontWeight: FontWeight.w200),
+                          color: Colors.white, fontWeight: FontWeight.w200),
                     )),
               ),
             ),

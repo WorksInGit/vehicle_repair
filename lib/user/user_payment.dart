@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:vehicle_repair/user/tab_view.dart';
 
 class UserPayment extends StatefulWidget {
   const UserPayment({super.key});
@@ -15,6 +14,7 @@ class _UserPaymentState extends State<UserPayment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: HexColor('222831'),
       body: Column(
         children: [
           Padding(
@@ -31,6 +31,7 @@ class _UserPaymentState extends State<UserPayment> {
                 Text(
                   'Successfull',
                   style: GoogleFonts.poppins(
+                    color: Colors.white,
                       fontWeight: FontWeight.w500, fontSize: 20.sp),
                 ),
               ],

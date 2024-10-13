@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:vehicle_repair/mechanic/bottom_nav.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:mech_doc/mechanic/bottom_nav.dart';
 
 class MechSignUp extends StatefulWidget {
   const MechSignUp({super.key});
@@ -12,6 +14,76 @@ class MechSignUp extends StatefulWidget {
 }
 
 class _MechSignUpState extends State<MechSignUp> {
+  TextEditingController _userController = TextEditingController();
+  TextEditingController _phoneNumber = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _expController = TextEditingController();
+  TextEditingController _shopController = TextEditingController();
+  TextEditingController _passController = TextEditingController();
+  TextEditingController _locationController = TextEditingController();
+
+  
+Future<void> addData() async {
+  if (_userController.text.isEmpty || _phoneNumber.text.isEmpty || 
+  _emailController.text.isEmpty || _expController.text.isEmpty ||
+  _shopController.text.isEmpty || _passController.text.isEmpty || 
+  _locationController.text.isEmpty
+  ) {
+ return showDialog(context: context, builder: (context) {
+   return AlertDialog(
+            backgroundColor: HexColor('3d495b'),
+            title: Row(
+              children: [
+                Text(
+                  'Message',
+                  style: GoogleFonts.poppins(color: Colors.white),
+                ),
+                SizedBox(
+                  width: 3.w,
+                ),
+                Icon(
+                  Iconsax.warning_2,
+                  color: Colors.white,
+                )
+              ],
+            ),
+            actions: [
+              Center(
+                  child: Row(
+                children: [
+                  Text(
+                    'Please fill all the required fields',
+                    style: GoogleFonts.poppins(color: Colors.white),
+                  ),
+                ],
+              )),
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    'Ok',
+                    style: GoogleFonts.poppins(color: Colors.blue),
+                  ))
+            ],
+          );
+ },);
+  }
+  FirebaseFirestore.instance.collection(
+    'mechSignUp'
+  ).add({
+    'username': _userController.text,
+    'phoneNumber': _phoneNumber.text,
+    'email': _emailController.text,
+    'experience': _expController.text,
+    'shopName': _shopController.text,
+    'password': _passController.text,
+    'status': 0,
+    'location': _locationController.text,
+    'profile': 'https://img.freepik.com/free-photo/portrait-man-laughing_23-2148859448.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1728345600&semt=ais_hybrid'
+  });
+  Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNav(),));
+}
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -26,19 +98,7 @@ class _MechSignUpState extends State<MechSignUp> {
                   children: [Icon(Icons.arrow_back_ios_new_rounded)],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 100.w,
-                    height: 100.h,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('assets/icons/icon.png'),
-                            fit: BoxFit.cover)),
-                  ),
-                ],
-              ),
+            
               Text(
                 'SIGN UP',
                 style: GoogleFonts.poppins(
@@ -62,6 +122,7 @@ class _MechSignUpState extends State<MechSignUp> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40.w),
                 child: TextFormField(
+                  controller: _userController,
                   decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
@@ -96,6 +157,7 @@ class _MechSignUpState extends State<MechSignUp> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40.w),
                 child: TextFormField(
+                  controller: _phoneNumber,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
@@ -126,6 +188,7 @@ class _MechSignUpState extends State<MechSignUp> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40.w),
                 child: TextFormField(
+                  controller: _emailController,
                   decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
@@ -157,6 +220,7 @@ class _MechSignUpState extends State<MechSignUp> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40.w),
                 child: TextFormField(
+                  controller: _expController,
                   decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
@@ -188,6 +252,7 @@ class _MechSignUpState extends State<MechSignUp> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40.w),
                 child: TextFormField(
+                  controller: _shopController,
                   decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
@@ -219,6 +284,7 @@ class _MechSignUpState extends State<MechSignUp> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40.w),
                 child: TextFormField(
+                  controller: _passController,
                   decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
@@ -231,11 +297,44 @@ class _MechSignUpState extends State<MechSignUp> {
                 ),
               ),
               SizedBox(
+                height: 5.h,
+              ),
+                Padding(
+                padding: EdgeInsets.only(left: 40.w),
+                child: Row(
+                  children: [
+                    Text(
+                      'Enter Location',
+                      style: GoogleFonts.dmSans(
+                          fontWeight: FontWeight.bold, fontSize: 15.sp),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 5.h,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 40.w),
+                child: TextFormField(
+                  controller: _locationController,
+                  decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                          borderRadius: BorderRadius.circular(10.r)),
+                      filled: true,
+                      fillColor: Colors.white,
+                      hintText: 'Enter your location ',
+                      hintStyle:
+                          GoogleFonts.poppins(fontWeight: FontWeight.w300)),
+                ),
+              ),
+              SizedBox(
                 height: 15.h,
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BottomNav(),));
+                  addData();
                 },
                 child: Container(
                   width: 200.w,

@@ -1,13 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:vehicle_repair/admin/mechanic_tab.dart';
-import 'package:vehicle_repair/admin/user_tab.dart';
-import 'package:vehicle_repair/mechanic/request/mech_notification.dart';
-import 'package:vehicle_repair/mechanic/request/mech_req_1.dart';
-import 'package:vehicle_repair/mechanic/request/mech_req_2.dart';
-import 'package:vehicle_repair/mechanic/request/view_profile.dart';
+import 'package:mech_doc/admin/mechanic_tab.dart';
+import 'package:mech_doc/admin/user_tab.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TabView extends StatefulWidget {
   const TabView({super.key});
@@ -17,30 +15,60 @@ class TabView extends StatefulWidget {
 }
 
 class _TabViewState extends State<TabView> {
+  String? adminId;
+  String? imageUrl;
+
+  @override
+  void initState() {
+    super.initState();
+    getAdminId();
+  }
+
+  Future<String?> getAdminId() async {
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    String? id = preferences.getString('adminId');
+    if (id != null) {
+      setState(() {
+        adminId = id;
+      });
+      DocumentSnapshot doc = await FirebaseFirestore.instance
+          .collection('adminLogin')
+          .doc(adminId)
+          .get();
+      if (doc.exists) {
+        setState(() {
+          imageUrl = doc['profile'];
+        });
+      } else {
+        print('Doc not found');
+      }
+    } else {
+      print('Admin id not found in sharedpreferences');
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-          backgroundColor: HexColor('#E8F1FF'),
+          backgroundColor: HexColor('222831'),
           body: Column(
             children: [
               Padding(
                 padding: EdgeInsets.only(top: 30.h, left: 20.w),
                 child: Row(
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return ViewProfile();
-                          },
-                        ));
-                      },
-                      child: CircleAvatar(
+                    CircleAvatar(
                         radius: 27.r,
-                        backgroundImage: AssetImage('assets/icons/image.png'),
-                      ),
+                        backgroundImage: 
+                      
+                        imageUrl != null ? 
+                        NetworkImage(imageUrl!) : AssetImage(
+                          'assets/icons/person.png'
+                          
+                        ) as  ImageProvider,backgroundColor: Colors.transparent,
                     ),
                   ],
                 ),
@@ -52,16 +80,18 @@ class _TabViewState extends State<TabView> {
                 width: 350.w,
                 height: 50.h,
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.grey,
                     borderRadius: BorderRadius.circular(10)),
                 child: TabBar(
-                    dividerColor: Colors.white,
+                    dividerColor: Colors.transparent,
                     labelStyle: GoogleFonts.poppins(
-                        color: Colors.white, fontWeight: FontWeight.w500),
+                        fontSize: 15.sp,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
                     indicatorSize: TabBarIndicatorSize.tab,
                     indicator: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: HexColor('#6EA3F3')),
+                        color: HexColor('#3d495b')),
                     tabs: [Tab(text: 'User'), Tab(text: 'Mechanic')]),
               ),
               SizedBox(

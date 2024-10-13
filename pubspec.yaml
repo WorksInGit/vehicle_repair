@@ -1,4 +1,4 @@
-name: vehicle_repair
+name: mech_doc
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -39,6 +39,11 @@ dependencies:
   google_fonts: ^6.2.1
   cloud_firestore: ^5.4.4
   firebase_core: ^3.6.0
+  iconsax: ^0.0.8
+  eva_icons_flutter: ^3.1.0
+  intl: ^0.19.0
+  shared_preferences: ^2.3.2
+  
   
 
 dev_dependencies:
@@ -51,15 +56,15 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  # flutter_lints: ^4.0.0
+  flutter_lints: ^4.0.0
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/icons/icon.png"
+  image_path: "assets/icons/mech.png"
   min_sdk_android: 21 
 flutter_native_splash:
   color: "#CFE2FF"  
-  image: "assets/icons/icon.png"
+  image: "assets/icons/mech.png"
   android: true
   ios: true
 # For information on the generic Dart part of this file, see the
@@ -91,6 +96,10 @@ flutter:
     - assets/icons/home.png
     - assets/icons/worker.png
     - assets/icons/playstore-icon.png
+    - assets/icons/mechanic.png
+    - assets/icons/profile_image.jpg
+    - assets/icons/person.png
+   
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

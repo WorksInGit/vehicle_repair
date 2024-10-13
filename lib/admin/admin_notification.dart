@@ -1,8 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:vehicle_repair/admin/add_notification.dart';
+import 'package:intl/intl.dart';
+import 'package:mech_doc/admin/add_notification.dart';
 
 class AdminNotification extends StatefulWidget {
   const AdminNotification({super.key});
@@ -16,7 +19,7 @@ class _AdminNotificationState extends State<AdminNotification> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: HexColor('#E8F1FF'),
+        backgroundColor: HexColor('222831'),
         body: Column(
           children: [
             Padding(
@@ -34,62 +37,89 @@ class _AdminNotificationState extends State<AdminNotification> {
               height: 20.h,
             ),
             Expanded(
-                child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.w),
-                  child: Card(
-                    child: Container(
-                      width: 200.w,
-                      height: 115.h,
-                      decoration: BoxDecoration(color: Colors.white),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(top: 20.h,left: 14.w),
-                            child: Row(
-                              children: [
-                                Text(
-                                  'Heading',
-                                  style: GoogleFonts.poppins(
-                                      fontWeight: FontWeight.w600),
-                                )
-                              ],
-                            ),
-                          ),
-                          Wrap(
+                child: StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance
+                  .collection('notification')
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Text('Error : ${snapshot.error}');
+                }
+
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.red,
+                    ),
+                  );
+                }
+                final notification = snapshot.data!.docs;
+                return ListView.builder(
+                  itemCount: notification.length,
+                  itemBuilder: (context, index) {
+                    var notiData =
+                        notification[index].data() as Map<String, dynamic>;
+                    Timestamp timestamp = notiData['timestamp'];
+                    DateTime dateTime = timestamp.toDate();
+                    String formattedTime =
+                        DateFormat('hh:mm a').format(dateTime);
+                    DateFormat('dd/MM/yyyy').format(dateTime);
+                    return Padding(
+                      padding: EdgeInsets.all(8.0).r,
+                      child: Card(
+                        elevation: 0,
+                        color: HexColor('3d495b'),
+                        shape: Border(),
+                        child: ListTile(
+                          title: Row(
                             children: [
-                              Padding(
-                                padding: EdgeInsets.only(top: 2.h,left: 5.w),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  child: Text(
-                                      'Loren ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying .....',style: GoogleFonts.poppins(),),
-                                ),
+                              Text(
+                                notiData['matter'],
+                                style: GoogleFonts.poppins(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              Spacer(),
+                              Column(
+                                children: [
+                                  Text(
+                                    formattedTime,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 13.sp,
+                                        color: Colors.white),
+                                  ),
+                                ],
                               )
                             ],
-                          )
-                        ],
+                          ),
+                          subtitle: Wrap(
+                            children: [
+                              Text(
+                                notiData['content'],
+                                style: GoogleFonts.poppins(color: Colors.white),
+                              )
+                            ],
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 );
               },
-            ))
+            )),
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.white,
-          shape: OvalBorder(side: BorderSide(color: Colors.blue)),
+          backgroundColor: Colors.grey,
+          shape: OvalBorder(side: BorderSide(color: Colors.black)),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => AddNotification(),));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddNotification(),
+                ));
           },
-          child: Icon(
-            Icons.add,
-            size: 50.sp,
-            color: HexColor('#2357D9'),
-          ),
+          child: Icon(EvaIcons.plusCircle, size: 50.sp, color: Colors.black),
         ),
       ),
     );

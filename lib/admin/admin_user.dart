@@ -1,42 +1,51 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:vehicle_repair/admin/bottom_nav.dart';
 
 class AdminUser extends StatefulWidget {
-  const AdminUser({super.key});
+  final QueryDocumentSnapshot userIndex;
+   AdminUser({super.key, required this.userIndex});
 
   @override
   State<AdminUser> createState() => _AdminUserState();
 }
 
 class _AdminUserState extends State<AdminUser> {
+
   @override
   Widget build(BuildContext context) {
+    String username = widget.userIndex['username'];
+    String phoneNo = widget.userIndex['phoneNumber'];
+    String email = widget.userIndex['email'];
+    String location = widget.userIndex['location'];
+    String profileUrl = widget.userIndex['profile'];
     return SafeArea(
       child: Scaffold(
+        backgroundColor: HexColor('222831'),
         body: Column(
           children: [
             Padding(
               padding: EdgeInsets.only(top: 20.h, left: 20.w),
               child: Row(
-                children: [Icon(Icons.arrow_back_ios_new_outlined)],
+                children: [Icon(Icons.arrow_back_ios_new_outlined,color: Colors.white,)],
               ),
             ),
             CircleAvatar(
               radius: 60.r,
-              backgroundImage: AssetImage('assets/icons/worker.png'),
+              backgroundImage: NetworkImage(profileUrl)
             ),
             Text(
-              'Name',
+              username,
               style: GoogleFonts.poppins(
+                color: Colors.white,
                   fontWeight: FontWeight.bold, fontSize: 15.sp),
             ),
             Text(
-              'Location',
+              location,
               style: GoogleFonts.poppins(
+                color: Colors.white,
                   fontWeight: FontWeight.w500, fontSize: 15.sp),
             ),
             Padding(
@@ -45,7 +54,7 @@ class _AdminUserState extends State<AdminUser> {
                 children: [
                   Text(
                     'Username',
-                    style: GoogleFonts.dmSans(
+                    style: GoogleFonts.dmSans(color: Colors.white,
                         fontWeight: FontWeight.bold, fontSize: 15.sp),
                   ),
                 ],
@@ -57,19 +66,14 @@ class _AdminUserState extends State<AdminUser> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 40.w),
               child: TextFormField(
+                initialValue: username,
                 decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(10.r)),
                     filled: true,
                     fillColor: HexColor('#E8F1FF'),
-                    label: Text(
-                      'Username',
-                      style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w200,
-                          fontSize: 15.sp),
-                    )),
+                  ),
               ),
             ),
             Padding(
@@ -78,7 +82,7 @@ class _AdminUserState extends State<AdminUser> {
                 children: [
                   Text(
                     'Phone number',
-                    style: GoogleFonts.dmSans(
+                    style: GoogleFonts.dmSans(color: Colors.white,
                         fontWeight: FontWeight.bold, fontSize: 15.sp),
                   ),
                 ],
@@ -90,19 +94,14 @@ class _AdminUserState extends State<AdminUser> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 40.w),
               child: TextFormField(
+                initialValue: phoneNo,
                 decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(10.r)),
                     filled: true,
                     fillColor: HexColor('#E8F1FF'),
-                    label: Text(
-                      '0000000000',
-                      style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w200,
-                          fontSize: 15.sp),
-                    )),
+                    ),
               ),
             ),
             Padding(
@@ -112,6 +111,7 @@ class _AdminUserState extends State<AdminUser> {
                   Text(
                     'Email address',
                     style: GoogleFonts.dmSans(
+                      color: Colors.white,
                         fontWeight: FontWeight.bold, fontSize: 15.sp),
                   ),
                 ],
@@ -123,19 +123,14 @@ class _AdminUserState extends State<AdminUser> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 40.w),
               child: TextFormField(
+                initialValue: email,
                 decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(10.r)),
                     filled: true,
                     fillColor: HexColor('#E8F1FF'),
-                    label: Text(
-                      'Example@gmail.com',
-                      style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w200,
-                          fontSize: 15.sp),
-                    )),
+                   ),
               ),
             ),
             SizedBox(
@@ -152,7 +147,7 @@ class _AdminUserState extends State<AdminUser> {
                     width: 130.w,
                     height: 45.h,
                     decoration: BoxDecoration(
-                        color: HexColor('#73ABFF'),
+                        color: Colors.blue,
                         borderRadius: BorderRadius.circular(5.r)),
                     child: Center(
                       child: Text(
@@ -172,7 +167,7 @@ class _AdminUserState extends State<AdminUser> {
                   width: 130.w,
                   height: 45.h,
                   decoration: BoxDecoration(
-                      color: HexColor('#FF9F9D'),
+                      color: Colors.red,
                       borderRadius: BorderRadius.circular(5.r)),
                   child: Center(
                     child: Text(

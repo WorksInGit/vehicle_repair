@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:vehicle_repair/user/user_payment.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:mech_doc/user/user_payment.dart';
 
 class MechBill extends StatefulWidget {
   const MechBill({super.key});
@@ -23,10 +24,11 @@ class _MechBillState extends State<MechBill> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: HexColor('222831'),
         appBar: AppBar(
-          backgroundColor: HexColor('#CFE2FF'),
-          leading: Icon(Icons.arrow_back_ios_new_outlined),
-          title: Text('Mechanic Bill'),
+          backgroundColor: HexColor('222831'),
+          leading: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.white),
+          title: Text('Mechanic Bill',style: GoogleFonts.poppins(color: Colors.white),),
           centerTitle: true,
         ),
         body: Center(
@@ -41,12 +43,12 @@ class _MechBillState extends State<MechBill> {
               ),
               Text(
                 'Name',
-                style: GoogleFonts.poppins(),
+                style: GoogleFonts.poppins(color: Colors.white),
               ),
               SizedBox(
                 height: 20.h,
               ),
-              Text('2+ years experience', style: GoogleFonts.poppins()),
+              Text('2+ years experience', style: GoogleFonts.poppins(color: Colors.white)),
               SizedBox(
                 height: 10.h,
               ),
@@ -98,7 +100,7 @@ class _MechBillState extends State<MechBill> {
                   SizedBox(
                     width: 10.w,
                   ),
-                  ImageIcon(AssetImage('assets/icons/edit.png'))
+                 Icon(Iconsax.edit_25,color: Colors.white,)
                 ],
               ),
               Padding(
@@ -107,7 +109,7 @@ class _MechBillState extends State<MechBill> {
                   children: [
                     Text(
                       'Amount',
-                      style: GoogleFonts.poppins(fontSize: 20.sp),
+                      style: GoogleFonts.poppins(fontSize: 20.sp, color: Colors.white),
                     ),
                   ],
                 ),
@@ -120,17 +122,18 @@ class _MechBillState extends State<MechBill> {
                 height: 50.h,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.r),
-                    border: Border.all()),
+                    border: Border.all(color: Colors.white)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.currency_rupee_sharp),
+                    Icon(Icons.currency_rupee_sharp, color: Colors.white,),
                     SizedBox(
                       width: 15.w,
                     ),
                     Text(
                       '2000/-',
                       style: GoogleFonts.poppins(
+                        color: Colors.white,
                           fontSize: 20.sp, fontWeight: FontWeight.w600),
                     )
                   ],

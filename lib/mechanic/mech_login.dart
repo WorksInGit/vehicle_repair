@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:vehicle_repair/mechanic/bottom_nav.dart';
-import 'package:vehicle_repair/mechanic/sign_up.dart';
+import 'package:mech_doc/mechanic/bottom_nav.dart';
+import 'package:mech_doc/mechanic/sign_up.dart';
 
 class MechLogin extends StatefulWidget {
   const MechLogin({super.key});
@@ -17,7 +17,7 @@ class _MechLoginState extends State<MechLogin> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: HexColor('#CFE2FF'),
+        backgroundColor: HexColor('#222831'),
         body: Column(
           children: [
             SizedBox(
@@ -31,7 +31,7 @@ class _MechLoginState extends State<MechLogin> {
                   height: 150.h,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage('assets/icons/icon.png'),
+                          image: AssetImage('assets/icons/mechanic.png'),
                           fit: BoxFit.cover)),
                 ),
               ],
@@ -42,7 +42,9 @@ class _MechLoginState extends State<MechLogin> {
             Text(
               'LOGIN',
               style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.bold, fontSize: 25.sp),
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25.sp),
             ),
             Padding(
               padding: EdgeInsets.only(left: 40.w, top: 50.h),
@@ -51,7 +53,9 @@ class _MechLoginState extends State<MechLogin> {
                   Text(
                     'Enter username',
                     style: GoogleFonts.dmSans(
-                        fontWeight: FontWeight.bold, fontSize: 15.sp),
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15.sp),
                   ),
                 ],
               ),
@@ -85,7 +89,9 @@ class _MechLoginState extends State<MechLogin> {
                   Text(
                     'Enter Password',
                     style: GoogleFonts.dmSans(
-                        fontWeight: FontWeight.bold, fontSize: 15.sp),
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15.sp),
                   ),
                 ],
               ),
@@ -103,14 +109,16 @@ class _MechLoginState extends State<MechLogin> {
                     filled: true,
                     fillColor: Colors.white,
                     hintText: 'Enter password',
-                    hintStyle: GoogleFonts.poppins(fontWeight: FontWeight.w300)),
+                    hintStyle:
+                        GoogleFonts.poppins(fontWeight: FontWeight.w300)),
               ),
             ),
             Padding(
               padding: EdgeInsets.only(left: 180.w, top: 20.h),
               child: Text(
                 'Forgot password?',
-                style: GoogleFonts.poppins(fontWeight: FontWeight.w500),
+                style: GoogleFonts.poppins(
+                    color: Colors.white, fontWeight: FontWeight.w500),
               ),
             ),
             SizedBox(
@@ -118,7 +126,7 @@ class _MechLoginState extends State<MechLogin> {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.pushReplacement(context, MaterialPageRoute(
+                Navigator.push(context, MaterialPageRoute(
                   builder: (context) {
                     return BottomNav();
                   },
@@ -147,7 +155,7 @@ class _MechLoginState extends State<MechLogin> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Do you have account? '),
+                Text('Do you have account? ',style: GoogleFonts.poppins( color: Colors.white,),),
                 TextButton(
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(

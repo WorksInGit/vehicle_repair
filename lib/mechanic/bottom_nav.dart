@@ -1,8 +1,9 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:vehicle_repair/mechanic/rating/mech_rating.dart';
-import 'package:vehicle_repair/mechanic/request/mech_req.dart';
-import 'package:vehicle_repair/mechanic/service/mech_service.dart';
+import 'package:hexcolor/hexcolor.dart';
+import 'package:mech_doc/mechanic/rating/mech_rating.dart';
+import 'package:mech_doc/mechanic/request/mech_req.dart';
+import 'package:mech_doc/mechanic/service/mech_service.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({super.key});
@@ -18,6 +19,7 @@ class _BottomNavState extends State<BottomNav> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: HexColor('#222831'),
         body: pages[selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
             onTap: (value) {
@@ -25,26 +27,26 @@ class _BottomNavState extends State<BottomNav> {
                 selectedIndex = value;
               });
             },
+            backgroundColor: HexColor('#3d495b'),
             currentIndex: selectedIndex,
-            unselectedLabelStyle: GoogleFonts.poppins(color: Colors.black),
-            selectedLabelStyle: GoogleFonts.poppins(color: Colors.black),
+            selectedItemColor: Colors.white,
+            unselectedItemColor: Colors.grey,
             items: [
               BottomNavigationBarItem(
-                  icon: ImageIcon(
-                    color: Colors.black,
-                    AssetImage('assets/icons/plumber.png'),
-                  ),
+                  icon:
+                  selectedIndex == 0 ? 
+                   Icon(EvaIcons.alertCircle,color: Colors.white,) : Icon(EvaIcons.alertCircleOutline,color: Colors.white,),
                   label: 'Request'),
               BottomNavigationBarItem(
-                  icon: ImageIcon(
-                    color: Colors.black,
-                    AssetImage('assets/icons/service_icon.png'),
-                  ),
+                  icon: 
+                  selectedIndex == 1 ?
+                  Icon(EvaIcons.shield,color: Colors.white,) : Icon(EvaIcons.shieldOutline,color: Colors.white,),
                   label: 'Service'),
               BottomNavigationBarItem(
-                  icon: ImageIcon(
-                      color: Colors.black,
-                      AssetImage('assets/icons/star_icon.png')),
+                
+                  icon: 
+                  selectedIndex == 2 ? 
+                  Icon(EvaIcons.star,color: Colors.white,) : Icon(EvaIcons.starOutline,color: Colors.white,),
                   label: 'Rating'),
             ]),
       ),

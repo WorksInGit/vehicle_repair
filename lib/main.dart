@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:vehicle_repair/splash_page.dart';
+import 'package:mech_doc/splash_page.dart';
 
 
 

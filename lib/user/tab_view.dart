@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:vehicle_repair/user/user_mech.dart';
-import 'package:vehicle_repair/user/user_request.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:mech_doc/user/user_mech.dart';
+import 'package:mech_doc/user/user_request.dart';
 
 class TabView extends StatefulWidget {
   const TabView({super.key});
@@ -23,10 +24,10 @@ class _TabViewState extends State<TabView> {
             FocusScope.of(context).unfocus();
           },
           child: Scaffold(
-            backgroundColor: Colors.white,
+            backgroundColor: HexColor('222831'),
             appBar: AppBar(
               automaticallyImplyLeading: false,
-              backgroundColor: HexColor('#CFE2FF'),
+              backgroundColor: HexColor('#222831'),
               actions: [
                 Padding(
                   padding: EdgeInsets.only(left: 30.w),
@@ -43,27 +44,22 @@ class _TabViewState extends State<TabView> {
                           label: Text(
                             'search',
                             style: GoogleFonts.poppins(
+                              color: Colors.white,
                                 fontWeight: FontWeight.w200, fontSize: 15.sp),
                           ),
-                          prefixIcon: Icon(Icons.search),
+                          prefixIcon: Icon(Iconsax.search_normal_1,color: Colors.white,),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20.r),
                               borderSide: BorderSide(color: Colors.transparent)),
                           border: InputBorder.none,
                           filled: true,
-                          fillColor: Colors.white),
+                          fillColor: HexColor('3d495b')),
                     ),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(right: 20.w),
-                  child: Container(
-                    width: 30.w,
-                    height: 30.h,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('assets/icons/notification.png'))),
-                  ),
+                  child: Icon(Iconsax.notification5,color: Colors.white,size: 30.sp,)
                 )
               ],
             ),
@@ -91,7 +87,7 @@ class _TabViewState extends State<TabView> {
                         width: 330.w,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15.r),
-                            color: HexColor('##E8F1FF')),
+                            color: Colors.grey),
                         child: TabBar(
                             labelStyle: GoogleFonts.poppins(
                                 color: Colors.white, fontWeight: FontWeight.bold,fontSize: 15.sp),
@@ -100,7 +96,7 @@ class _TabViewState extends State<TabView> {
                             indicator: BoxDecoration(
                               borderRadius: BorderRadius.circular(15.r),
                               shape: BoxShape.rectangle,
-                              color: HexColor('#2357D9'),
+                              color: HexColor('#3d495b'),
                             ),
                             dividerColor: Colors.transparent,
                             tabs: [

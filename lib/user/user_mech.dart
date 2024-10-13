@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:vehicle_repair/user/u_m_details.dart';
+import 'package:mech_doc/user/u_m_details.dart';
 
 class UserMech extends StatefulWidget {
   const UserMech({super.key});
@@ -29,7 +29,7 @@ class _UserMechState extends State<UserMech> {
                 height: 125.h,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: HexColor('#CFE2FF')),
+                    color: HexColor('3d495b')),
                 child: Row(
                   
                   children: [
@@ -49,7 +49,7 @@ class _UserMechState extends State<UserMech> {
                         ),
                         Text(
                           'Name',
-                          style: GoogleFonts.poppins(),
+                          style: GoogleFonts.poppins(color: Colors.white),
                         )
                       ],
                     ),
@@ -57,8 +57,8 @@ class _UserMechState extends State<UserMech> {
             
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text('2+ years experience'),
-                        Text('Fuel leaking'),
+                        Text('2+ years experience',style: GoogleFonts.poppins(color: Colors.white),),
+                        Text('Fuel leaking',style: GoogleFonts.poppins(color: Colors.white)),
                         Container(
                           width: 100.w,
                           height: 30.h,

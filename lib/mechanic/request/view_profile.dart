@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:vehicle_repair/mechanic/bottom_nav.dart';
-import 'package:vehicle_repair/mechanic/request/edit_profile.dart';
+import 'package:mech_doc/mechanic/bottom_nav.dart';
+import 'package:mech_doc/mechanic/request/edit_profile.dart';
 
 class ViewProfile extends StatefulWidget {
   const ViewProfile({super.key});
@@ -32,27 +32,38 @@ class _ViewProfileState extends State<ViewProfile>
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: HexColor('222831'),
         body: Column(
           children: [
-              Padding(
+            Padding(
               padding: EdgeInsets.only(top: 10.h, left: 20.w),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNav(),));
-                    },
-                    child: Icon(Icons.arrow_back_ios_new_outlined)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => BottomNav(),
+                            ));
+                      },
+                      child: Icon(
+                        Icons.arrow_back_ios_new_outlined,
+                        color: Colors.white,
+                      )),
                   Padding(
                     padding: EdgeInsets.only(right: 20.w),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-                          return EditProfile();
-                        },));
+                        Navigator.pushReplacement(context, MaterialPageRoute(
+                          builder: (context) {
+                            return EditProfile();
+                          },
+                        ));
                       },
                       child: ImageIcon(
+                        color: Colors.white,
                         AssetImage('assets/icons/edit.png')),
                     ),
                   )
@@ -74,11 +85,11 @@ class _ViewProfileState extends State<ViewProfile>
                         borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(10.r)),
                     filled: true,
-                    fillColor: HexColor('##E8F1FF'),
+                    fillColor: HexColor('##3d495b'),
                     label: Text(
                       'Name',
                       style: GoogleFonts.poppins(
-                          color: Colors.black, fontWeight: FontWeight.w300),
+                          color: Colors.white, fontWeight: FontWeight.w300),
                     )),
               ),
             ),
@@ -93,15 +104,15 @@ class _ViewProfileState extends State<ViewProfile>
                         borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(10.r)),
                     filled: true,
-                    fillColor: HexColor('##E8F1FF'),
+                    fillColor: HexColor('##3d495b'),
                     label: Text(
                       'User name',
                       style: GoogleFonts.poppins(
-                          color: Colors.black, fontWeight: FontWeight.w300),
+                          color: Colors.white, fontWeight: FontWeight.w300),
                     )),
               ),
             ),
-             SizedBox(
+            SizedBox(
               height: 10.h,
             ),
             Padding(
@@ -112,11 +123,11 @@ class _ViewProfileState extends State<ViewProfile>
                         borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(10.r)),
                     filled: true,
-                    fillColor: HexColor('##E8F1FF'),
+                    fillColor: HexColor('##3d495b'),
                     label: Text(
                       'Phone number',
                       style: GoogleFonts.poppins(
-                          color: Colors.black, fontWeight: FontWeight.w300),
+                          color: Colors.white, fontWeight: FontWeight.w300),
                     )),
               ),
             ),
@@ -131,11 +142,11 @@ class _ViewProfileState extends State<ViewProfile>
                         borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(10.r)),
                     filled: true,
-                    fillColor: HexColor('##E8F1FF'),
+                    fillColor: HexColor('##3d495b'),
                     label: Text(
                       'Email',
                       style: GoogleFonts.poppins(
-                          color: Colors.black, fontWeight: FontWeight.w300),
+                          color: Colors.white, fontWeight: FontWeight.w300),
                     )),
               ),
             ),
@@ -150,11 +161,11 @@ class _ViewProfileState extends State<ViewProfile>
                         borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(10.r)),
                     filled: true,
-                    fillColor: HexColor('##E8F1FF'),
+                    fillColor: HexColor('##3d495b'),
                     label: Text(
                       'Experience',
                       style: GoogleFonts.poppins(
-                          color: Colors.black, fontWeight: FontWeight.w300),
+                          color: Colors.white, fontWeight: FontWeight.w300),
                     )),
               ),
             ),
@@ -169,11 +180,11 @@ class _ViewProfileState extends State<ViewProfile>
                         borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(10.r)),
                     filled: true,
-                    fillColor: HexColor('##E8F1FF'),
+                    fillColor: HexColor('##3d495b'),
                     label: Text(
                       'Location',
                       style: GoogleFonts.poppins(
-                          color: Colors.black, fontWeight: FontWeight.w300),
+                          color: Colors.white, fontWeight: FontWeight.w300),
                     )),
               ),
             ),
@@ -188,11 +199,11 @@ class _ViewProfileState extends State<ViewProfile>
                         borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(10.r)),
                     filled: true,
-                    fillColor: HexColor('##E8F1FF'),
+                    fillColor: HexColor('##3d495b'),
                     label: Text(
                       'Shop name',
                       style: GoogleFonts.poppins(
-                          color: Colors.black, fontWeight: FontWeight.w300),
+                          color: Colors.white, fontWeight: FontWeight.w300),
                     )),
               ),
             ),

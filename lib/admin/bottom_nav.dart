@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:vehicle_repair/admin/admin_notification.dart';
-import 'package:vehicle_repair/admin/admin_payment.dart';
-import 'package:vehicle_repair/admin/tab_view.dart';
-import 'package:vehicle_repair/mechanic/rating/mech_rating.dart';
-import 'package:vehicle_repair/mechanic/request/mech_req.dart';
-import 'package:vehicle_repair/mechanic/service/mech_service.dart';
+import 'package:hexcolor/hexcolor.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:mech_doc/admin/admin_notification.dart';
+import 'package:mech_doc/admin/admin_payment.dart';
+import 'package:mech_doc/admin/tab_view.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({super.key});
@@ -21,6 +19,7 @@ class _BottomNavState extends State<BottomNav> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: HexColor('222831'),
         body: pages[selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
             onTap: (value) {
@@ -29,25 +28,25 @@ class _BottomNavState extends State<BottomNav> {
               });
             },
             currentIndex: selectedIndex,
-            unselectedLabelStyle: GoogleFonts.poppins(color: Colors.black),
-            selectedLabelStyle: GoogleFonts.poppins(color: Colors.black),
+            backgroundColor: HexColor('3d495b'),
+            
+            selectedItemColor: Colors.white,
+            unselectedItemColor: Colors.grey,
             items: [
               BottomNavigationBarItem(
-                  icon: ImageIcon(
-                    color: Colors.black,
-                    AssetImage('assets/icons/home.png'),
-                  ),
+                  icon: 
+                  selectedIndex == 0 ? 
+                  Icon(Iconsax.home_25,color: Colors.white,) :  Icon(Iconsax.home_24,color: Colors.white,),
                   label: 'Home'),
               BottomNavigationBarItem(
-                  icon: ImageIcon(
-                    color: Colors.black,
-                    AssetImage('assets/icons/wallet.png'),
-                  ),
+                  icon: 
+                  selectedIndex == 1 ? 
+                  Icon(Iconsax.money_send5,color: Colors.white,) : Icon(Iconsax.money_send4,color: Colors.white,),
                   label: 'Payment'),
               BottomNavigationBarItem(
-                  icon: ImageIcon(
-                      color: Colors.black,
-                      AssetImage('assets/icons/chat.png')),
+                  icon:
+                  selectedIndex == 2 ?  
+                   Icon(Iconsax.notification5,color: Colors.white,) : Icon(Iconsax.notification4,color: Colors.white,),
                   label: 'Notification'),
             ]),
       ),

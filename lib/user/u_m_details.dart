@@ -22,10 +22,15 @@ class _UMDetailsState extends State<UMDetails> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: HexColor('222831'),
         appBar: AppBar(
-          backgroundColor: HexColor('#CFE2FF'),
-          leading: Icon(Icons.arrow_back_ios_new_outlined),
-          title: Text('Needed service'),
+          backgroundColor: HexColor('222831'),
+          leading: IconButton(
+            onPressed: (){
+              Navigator.pop(context);
+            },
+            icon:  Icon(Icons.arrow_back_ios_new_outlined,color: Colors.white,)),
+          title: Text('Needed service',style: TextStyle(color: Colors.white),),
           centerTitle: true,
         ),
         body: Center(
@@ -40,13 +45,13 @@ class _UMDetailsState extends State<UMDetails> {
               ),
               Text(
                 'Name',
-                style: GoogleFonts.poppins(),
+                style: GoogleFonts.poppins(color: Colors.white),
               ),
               SizedBox(
                 height: 20.h,
               ),
-              Text('Contact number', style: GoogleFonts.poppins()),
-              Text('2+ years experience', style: GoogleFonts.poppins()),
+              Text('Contact number', style: GoogleFonts.poppins(color: Colors.white)),
+              Text('2+ years experience', style: GoogleFonts.poppins(color: Colors.white)),
               Container(
                 width: 100.w,
                 height: 30.h,
@@ -67,7 +72,7 @@ class _UMDetailsState extends State<UMDetails> {
                   children: [
                     Text(
                       'Add needed service',
-                      style: GoogleFonts.poppins(fontWeight: FontWeight.w500),
+                      style: GoogleFonts.poppins(fontWeight: FontWeight.w500,color: Colors.white),
                     ),
                   ],
                 ),
@@ -79,27 +84,28 @@ class _UMDetailsState extends State<UMDetails> {
                     width: 300.w,
                     height: 40.h,
                     decoration: BoxDecoration(
-                        color: HexColor('#CFE2FF'),
+                        color: HexColor('3d495b'),
                         borderRadius: BorderRadius.circular(10.r)),
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
                       child: DropdownButton(
                           hint: Text(
                             'Select service',
-                            style: GoogleFonts.poppins(),
+                            style: GoogleFonts.poppins(color: Colors.white),
                           ),
-                          dropdownColor: HexColor('#CFE2FF'),
+                          dropdownColor: HexColor('3d495b'),
+                          
                           underline: SizedBox.shrink(),
                           icon: Padding(
                             padding: EdgeInsets.only(left: 75.w),
-                            child: Icon(Icons.keyboard_arrow_down),
+                            child: Icon(Icons.keyboard_arrow_down,color: Colors.white,),
                           ),
                           value: selectedValue,
                           items: services.map((String service) {
                             return DropdownMenuItem(
                               child: Text(
                                 service,
-                                style: GoogleFonts.poppins(fontSize: 14.sp),
+                                style: GoogleFonts.poppins(fontSize: 14.sp,color: Colors.white),
                               ),
                               value: service,
                             );
@@ -116,6 +122,7 @@ class _UMDetailsState extends State<UMDetails> {
                   ),
                   Icon(
                     Icons.add_circle,
+                    color: Colors.white,
                     size: 23.sp,
                   )
                 ],
@@ -129,20 +136,20 @@ class _UMDetailsState extends State<UMDetails> {
                   width: 300.w,
                   height: 40.h,
                   decoration: BoxDecoration(
-                      color: HexColor('#CFE2FF'),
+                      color: HexColor('3d495b'),
                       borderRadius: BorderRadius.circular(10.r)),
                   child: Padding(
                     padding: EdgeInsets.all(8.0),
                     child: DropdownButton(
-                        dropdownColor: HexColor('#CFE2FF'),
+                        dropdownColor: HexColor('3d495b'),
                         underline: SizedBox.shrink(),
                         icon: Padding(
                           padding: EdgeInsets.only(left: 75.w),
-                          child: Icon(Icons.keyboard_arrow_down),
+                          child: Icon(Icons.keyboard_arrow_down,color: Colors.white,),
                         ),
                         items: services.map((String service) {
                           return DropdownMenuItem(
-                            child: Text(service),
+                            child: Text(service,style: GoogleFonts.poppins(color: Colors.white,fontSize: 14.sp),),
                             value: service,
                           );
                         }).toList(),
@@ -164,7 +171,7 @@ class _UMDetailsState extends State<UMDetails> {
                   ),
                   Text(
                     'Place',
-                    style: GoogleFonts.poppins(),
+                    style: GoogleFonts.poppins(color: Colors.white),
                   ),
                 ],
               ),
@@ -178,10 +185,10 @@ class _UMDetailsState extends State<UMDetails> {
                   height: 70.h,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: HexColor('#CFE2FF')),
+                      color: HexColor('3d495b')),
                   child: Padding(
                     padding: EdgeInsets.all(10.0),
-                    child: Text('Beach road calicut'),
+                    child: Text('Beach road calicut',style: GoogleFonts.poppins(color: Colors.white),),
                   ),
                 ),
               ),

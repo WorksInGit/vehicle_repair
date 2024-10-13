@@ -16,13 +16,14 @@ class _MechAcceptedState extends State<MechAccepted> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: HexColor('222831'),
         body: Column(
           children: [
             Row(
               children: [
                 Padding(
                   padding: EdgeInsets.only(left: 20.w, top: 10.h),
-                  child: Icon(Icons.arrow_back_ios_new_outlined),
+                  child: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.white,),
                 )
               ],
             ),
@@ -34,7 +35,7 @@ class _MechAcceptedState extends State<MechAccepted> {
               height: 100.h,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.r),
-                  color: HexColor('##CFE2FF')),
+                  color: HexColor('#3d495b')),
               child: Row(
                 children: [
                   SizedBox(
@@ -50,7 +51,7 @@ class _MechAcceptedState extends State<MechAccepted> {
                       ),
                       Text(
                         'Name',
-                        style: GoogleFonts.poppins(),
+                        style: GoogleFonts.poppins(color: Colors.white),
                       )
                     ],
                   ),
@@ -61,10 +62,10 @@ class _MechAcceptedState extends State<MechAccepted> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Fuel leaking', style: GoogleFonts.poppins()),
-                      Text('Date', style: GoogleFonts.poppins()),
-                      Text('Time', style: GoogleFonts.poppins()),
-                      Text('Place', style: GoogleFonts.poppins()),
+                      Text('Fuel leaking', style: GoogleFonts.poppins(color: Colors.white)),
+                      Text('Date', style: GoogleFonts.poppins(color: Colors.white)),
+                      Text('Time', style: GoogleFonts.poppins(color: Colors.white)),
+                      Text('Place', style: GoogleFonts.poppins(color: Colors.white)),
                     ],
                   )
                 ],
@@ -76,7 +77,7 @@ class _MechAcceptedState extends State<MechAccepted> {
                 children: [
                   Text(
                     'Add status',
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.poppins(color: Colors.white,
                         fontWeight: FontWeight.w400, fontSize: 20.sp),
                   ),
                 ],
@@ -101,7 +102,7 @@ class _MechAcceptedState extends State<MechAccepted> {
                 ),
                 Text(
                   'Completed',
-                  style: GoogleFonts.poppins(),
+                  style: GoogleFonts.poppins(color: Colors.white),
                 ),
                 SizedBox(
                   width: 40.w,
@@ -117,7 +118,7 @@ class _MechAcceptedState extends State<MechAccepted> {
                 ),
                 Text(
                   'Not Completed',
-                  style: GoogleFonts.poppins(),
+                  style: GoogleFonts.poppins(color: Colors.white),
                 ),
               ],
             ),
@@ -130,7 +131,7 @@ class _MechAcceptedState extends State<MechAccepted> {
                           children: [
                             Text(
                               'Amount',
-                              style: GoogleFonts.poppins(fontSize: 20.sp),
+                              style: GoogleFonts.poppins(fontSize: 20.sp,color: Colors.white),
                             ),
                           ],
                         ),
@@ -143,17 +144,18 @@ class _MechAcceptedState extends State<MechAccepted> {
                         height: 50.h,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.r),
-                            border: Border.all()),
+                            border: Border.all(color: Colors.white)),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.currency_rupee_sharp),
+                            Icon(Icons.currency_rupee_sharp,color: Colors.white,),
                             SizedBox(
                               width: 15.w,
                             ),
                             Text(
                               '2000/-',
                               style: GoogleFonts.poppins(
+                                color: Colors.white,
                                   fontSize: 20.sp, fontWeight: FontWeight.w600),
                             )
                           ],
@@ -196,7 +198,7 @@ class _MechAcceptedState extends State<MechAccepted> {
                           children: [
                             Text(
                               'Reject reason',
-                              style: GoogleFonts.poppins(fontSize: 20.sp),
+                              style: GoogleFonts.poppins(fontSize: 20.sp,color: Colors.white),
                             ),
                           ],
                         ),
@@ -209,7 +211,7 @@ class _MechAcceptedState extends State<MechAccepted> {
                         height: 170.h,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.r),
-                            border: Border.all()),
+                            border: Border.all(color: Colors.white)),
                       ),
                       SizedBox(
                         height: 30.h,

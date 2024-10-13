@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:vehicle_repair/mechanic/request/mech_accepted.dart';
+import 'package:mech_doc/mechanic/request/mech_accepted.dart';
 
 
 class MechReq2 extends StatefulWidget {
@@ -30,7 +30,7 @@ class _MechReq2State extends State<MechReq2> {
                 height: 100.h,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: HexColor('##CFE2FF')),
+                    color: HexColor('#3d495b')),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -47,7 +47,7 @@ class _MechReq2State extends State<MechReq2> {
                               backgroundImage:
                                   AssetImage('assets/icons/boss.png'),
                             ),
-                            Text('Name')
+                            Text('Name',style: GoogleFonts.poppins(color: Colors.white))
                           ],
                         ),
                         SizedBox(
@@ -55,10 +55,10 @@ class _MechReq2State extends State<MechReq2> {
                         ),
                         Column(
                           children: [
-                            Text('Fuel leaking'),
-                            Text('Date'),
-                            Text('Time'),
-                            Text('Place'),
+                            Text('Fuel leaking',style: GoogleFonts.poppins(color: Colors.white)),
+                            Text('Date',style: GoogleFonts.poppins(color: Colors.white)),
+                            Text('Time',style: GoogleFonts.poppins(color: Colors.white)),
+                            Text('Place',style: GoogleFonts.poppins(color: Colors.white)),
                           ],
                         ),
                         SizedBox(
