@@ -49,7 +49,7 @@ class _AdminNotificationState extends State<AdminNotification> {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(
                     child: CircularProgressIndicator(
-                      color: Colors.red,
+                      color: Colors.grey,
                     ),
                   );
                 }

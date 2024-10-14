@@ -24,7 +24,7 @@ class _UserTabState extends State<UserTab> {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
             child: 
-            CircularProgressIndicator(color: Colors.red,),
+            CircularProgressIndicator(color: Colors.grey,),
           );
         }
         final user = snapshot.data!.docs;
@@ -51,7 +51,7 @@ class _UserTabState extends State<UserTab> {
                       width: 60.w,
                       height: 60.h,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(40.r),
+                        borderRadius: BorderRadius.circular(100).r,
                         image: DecorationImage(image: NetworkImage(userData['profile']),)
                       ),
                     ),
