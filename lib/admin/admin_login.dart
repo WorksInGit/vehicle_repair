@@ -29,7 +29,7 @@ class _AdminLoginState extends State<AdminLogin> {
         String adminId = querySnapshot.docs[0].id;
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString('adminId', adminId);
-        Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNav(),));
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BottomNav(),));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Invalid email or password')));
       }

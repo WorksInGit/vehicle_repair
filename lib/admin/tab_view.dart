@@ -31,6 +31,12 @@ class _TabViewState extends State<TabView> {
       setState(() {
         adminId = id;
       });
+      String? storedImageUrl = preferences.getString('imageUrl');
+      if (storedImageUrl != null) {
+        setState(() {
+          imageUrl = storedImageUrl;
+        });
+      }
       DocumentSnapshot doc = await FirebaseFirestore.instance
           .collection('adminLogin')
           .doc(adminId)
@@ -61,14 +67,12 @@ class _TabViewState extends State<TabView> {
                 child: Row(
                   children: [
                     CircleAvatar(
-                        radius: 27.r,
-                        backgroundImage: 
-                      
-                        imageUrl != null ? 
-                        NetworkImage(imageUrl!) : AssetImage(
-                          'assets/icons/person.png'
-                          
-                        ) as  ImageProvider,backgroundColor: Colors.transparent,
+                      radius: 27.r,
+                      backgroundImage: imageUrl != null
+                          ? NetworkImage(imageUrl!)
+                          : AssetImage('assets/icons/person.png')
+                              as ImageProvider,
+                      backgroundColor: Colors.transparent,
                     ),
                   ],
                 ),

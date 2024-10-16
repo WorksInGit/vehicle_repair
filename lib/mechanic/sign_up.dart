@@ -22,15 +22,18 @@ class _MechSignUpState extends State<MechSignUp> {
   TextEditingController _passController = TextEditingController();
   TextEditingController _locationController = TextEditingController();
 
-  
-Future<void> addData() async {
-  if (_userController.text.isEmpty || _phoneNumber.text.isEmpty || 
-  _emailController.text.isEmpty || _expController.text.isEmpty ||
-  _shopController.text.isEmpty || _passController.text.isEmpty || 
-  _locationController.text.isEmpty
-  ) {
- return showDialog(context: context, builder: (context) {
-   return AlertDialog(
+  Future<void> addData() async {
+    if (_userController.text.isEmpty ||
+        _phoneNumber.text.isEmpty ||
+        _emailController.text.isEmpty ||
+        _expController.text.isEmpty ||
+        _shopController.text.isEmpty ||
+        _passController.text.isEmpty ||
+        _locationController.text.isEmpty) {
+      return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
             backgroundColor: HexColor('3d495b'),
             title: Row(
               children: [
@@ -67,42 +70,52 @@ Future<void> addData() async {
                   ))
             ],
           );
- },);
+        },
+      );
+    }
+    FirebaseFirestore.instance.collection('mechSignUp').add({
+      'username': _userController.text,
+      'phoneNumber': _phoneNumber.text,
+      'email': _emailController.text,
+      'experience': _expController.text,
+      'shopName': _shopController.text,
+      'password': _passController.text,
+      'status': 0,
+      'location': _locationController.text,
+      'profile': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGD0BcxwuvdI1H-S35GmT43vP2MBIdCgyeIA&s'
+    });
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => BottomNav(),
+        ));
   }
-  FirebaseFirestore.instance.collection(
-    'mechSignUp'
-  ).add({
-    'username': _userController.text,
-    'phoneNumber': _phoneNumber.text,
-    'email': _emailController.text,
-    'experience': _expController.text,
-    'shopName': _shopController.text,
-    'password': _passController.text,
-    'status': 0,
-    'location': _locationController.text,
-    'profile': 'https://img.freepik.com/free-photo/portrait-man-laughing_23-2148859448.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1728345600&semt=ais_hybrid'
-  });
-  Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNav(),));
-}
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: HexColor('#CFE2FF'),
+        backgroundColor: HexColor('222831'),
         body: SingleChildScrollView(
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(top: 10.h, left: 20.w),
+                padding: EdgeInsets.only(top: 20.h, left: 20.w),
                 child: Row(
-                  children: [Icon(Icons.arrow_back_ios_new_rounded)],
+                  children: [
+                    Icon(
+                      Icons.arrow_back_ios_new_rounded,
+                      color: Colors.white,
+                    )
+                  ],
                 ),
               ),
-            
               Text(
                 'SIGN UP',
                 style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.bold, fontSize: 25.sp),
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25.sp),
               ),
               Padding(
                 padding: EdgeInsets.only(left: 40.w),
@@ -111,7 +124,9 @@ Future<void> addData() async {
                     Text(
                       'Enter username',
                       style: GoogleFonts.dmSans(
-                          fontWeight: FontWeight.bold, fontSize: 15.sp),
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15.sp),
                     ),
                   ],
                 ),
@@ -146,7 +161,9 @@ Future<void> addData() async {
                     Text(
                       'Enter Phone number',
                       style: GoogleFonts.dmSans(
-                          fontWeight: FontWeight.bold, fontSize: 15.sp),
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15.sp),
                     ),
                   ],
                 ),
@@ -177,7 +194,9 @@ Future<void> addData() async {
                     Text(
                       'Enter your email',
                       style: GoogleFonts.dmSans(
-                          fontWeight: FontWeight.bold, fontSize: 15.sp),
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15.sp),
                     ),
                   ],
                 ),
@@ -209,7 +228,9 @@ Future<void> addData() async {
                     Text(
                       'Enter your work experience  ',
                       style: GoogleFonts.dmSans(
-                          fontWeight: FontWeight.bold, fontSize: 15.sp),
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15.sp),
                     ),
                   ],
                 ),
@@ -241,7 +262,9 @@ Future<void> addData() async {
                     Text(
                       'Enter your work shop name  ',
                       style: GoogleFonts.dmSans(
-                          fontWeight: FontWeight.bold, fontSize: 15.sp),
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15.sp),
                     ),
                   ],
                 ),
@@ -273,7 +296,9 @@ Future<void> addData() async {
                     Text(
                       'Enter Password',
                       style: GoogleFonts.dmSans(
-                          fontWeight: FontWeight.bold, fontSize: 15.sp),
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15.sp),
                     ),
                   ],
                 ),
@@ -299,14 +324,16 @@ Future<void> addData() async {
               SizedBox(
                 height: 5.h,
               ),
-                Padding(
+              Padding(
                 padding: EdgeInsets.only(left: 40.w),
                 child: Row(
                   children: [
                     Text(
                       'Enter Location',
                       style: GoogleFonts.dmSans(
-                          fontWeight: FontWeight.bold, fontSize: 15.sp),
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15.sp),
                     ),
                   ],
                 ),

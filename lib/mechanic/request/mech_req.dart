@@ -1,12 +1,14 @@
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:mech_doc/mechanic/request/mech_notification.dart';
 import 'package:mech_doc/mechanic/request/mech_req_1.dart';
 import 'package:mech_doc/mechanic/request/mech_req_2.dart';
 import 'package:mech_doc/mechanic/request/view_profile.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MechReq extends StatefulWidget {
   const MechReq({super.key});
@@ -16,6 +18,39 @@ class MechReq extends StatefulWidget {
 }
 
 class _MechReqState extends State<MechReq> {
+  String? mechId;
+  String? imageUrl;
+  @override
+  void initState() {
+    super.initState();
+    _getMechId();
+  }
+
+  Future<String?> _getMechId() async {
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    String? id = preferences.getString('mechId');
+    if (id != null) {
+      setState(() {
+        mechId = id;
+      });
+
+      DocumentSnapshot doc = await FirebaseFirestore.instance
+          .collection('mechSignUp')
+          .doc(mechId)
+          .get();
+      if (doc.exists) {
+        setState(() {
+          imageUrl = doc['profile'];
+        });
+      } else {
+        print('Doc not found');
+      }
+    } else {
+      print('Mech id not found in sharedpreferences');
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -38,22 +73,25 @@ class _MechReqState extends State<MechReq> {
                       },
                       child: CircleAvatar(
                         radius: 27.r,
-                        backgroundImage: AssetImage('assets/icons/profile.png'),
+                        backgroundImage: imageUrl != null
+                            ? NetworkImage(imageUrl!)
+                            : AssetImage('assets/icons/person.png')
+                                as ImageProvider,
                       ),
                     ),
                     Spacer(),
                     Padding(
                         padding: const EdgeInsets.only(right: 20),
-                        child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => MechNotification(),
-                                  ));
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(
+                                builder: (context) {
+                                  return MechNotification();
+                                },
+                              ));
                             },
-                            child: Icon(
-                              EvaIcons.messageSquare,
+                            icon: Icon(
+                              Iconsax.notification5,
                               color: Colors.white,
                               size: 30.sp,
                             )))

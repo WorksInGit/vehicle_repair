@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AdminPayment extends StatefulWidget {
   const AdminPayment({super.key});
@@ -11,6 +13,46 @@ class AdminPayment extends StatefulWidget {
 }
 
 class _AdminPaymentState extends State<AdminPayment> {
+   String? adminId;
+  String? imageUrl;
+
+  @override
+  void initState() {
+    super.initState();
+    getAdminId();
+  }
+
+  Future<String?> getAdminId() async {
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    String? id = preferences.getString('adminId');
+    if (id != null) {
+      setState(() {
+        adminId = id;
+      });
+      String? storedImageUrl = preferences.getString('imageUrl');
+      if (storedImageUrl != null) {
+        setState(() {
+          imageUrl = storedImageUrl;
+        });
+      }
+      DocumentSnapshot doc = await FirebaseFirestore.instance
+          .collection('adminLogin')
+          .doc(adminId)
+          .get();
+      if (doc.exists) {
+        setState(() {
+          imageUrl = doc['profile'];
+        });
+        preferences.setString('imageUrl', imageUrl!);
+      } else {
+        print('Doc not found');
+      }
+    } else {
+      print('Admin id not found in sharedpreferences');
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -24,7 +66,13 @@ class _AdminPaymentState extends State<AdminPayment> {
                 children: [
                   CircleAvatar(
                     radius: 25.r,
-                    backgroundImage: AssetImage('assets/icons/image.png'),
+                    backgroundImage: 
+                    adminId != null && imageUrl != null ?
+                    NetworkImage(
+                      imageUrl!
+                    ) : AssetImage('assets/icons/person.png')  as ImageProvider
+
+                  
                   ),
                 ],
               ),

@@ -6,13 +6,28 @@ import 'package:hexcolor/hexcolor.dart';
 
 class AdminUser extends StatefulWidget {
   final QueryDocumentSnapshot userIndex;
-   AdminUser({super.key, required this.userIndex});
+  AdminUser({super.key, required this.userIndex});
 
   @override
   State<AdminUser> createState() => _AdminUserState();
 }
 
 class _AdminUserState extends State<AdminUser> {
+  Future<void> _acceptStatus() async {
+    await FirebaseFirestore.instance
+        .collection('userSignUp')
+        .doc(widget.userIndex.id)
+        .update({'status': 1});
+    Navigator.pop(context);
+  }
+
+  Future<void> _rejectStatus() async {
+    await FirebaseFirestore.instance
+        .collection('userSignUp')
+        .doc(widget.userIndex.id)
+        .update({'status': 2});
+    Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,24 +44,29 @@ class _AdminUserState extends State<AdminUser> {
             Padding(
               padding: EdgeInsets.only(top: 20.h, left: 20.w),
               child: Row(
-                children: [Icon(Icons.arrow_back_ios_new_outlined,color: Colors.white,)],
+                children: [
+                  Icon(
+                    Icons.arrow_back_ios_new_outlined,
+                    color: Colors.white,
+                  )
+                ],
               ),
             ),
             CircleAvatar(
-              radius: 60.r,
-              backgroundImage: NetworkImage(profileUrl)
-            ),
+                radius: 60.r, backgroundImage: NetworkImage(profileUrl)),
             Text(
               username,
               style: GoogleFonts.poppins(
-                color: Colors.white,
-                  fontWeight: FontWeight.bold, fontSize: 15.sp),
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15.sp),
             ),
             Text(
               location,
               style: GoogleFonts.poppins(
-                color: Colors.white,
-                  fontWeight: FontWeight.w500, fontSize: 15.sp),
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 15.sp),
             ),
             Padding(
               padding: EdgeInsets.only(left: 40.w, top: 50.h),
@@ -54,8 +74,10 @@ class _AdminUserState extends State<AdminUser> {
                 children: [
                   Text(
                     'Username',
-                    style: GoogleFonts.dmSans(color: Colors.white,
-                        fontWeight: FontWeight.bold, fontSize: 15.sp),
+                    style: GoogleFonts.dmSans(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15.sp),
                   ),
                 ],
               ),
@@ -68,12 +90,12 @@ class _AdminUserState extends State<AdminUser> {
               child: TextFormField(
                 initialValue: username,
                 decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10.r)),
-                    filled: true,
-                    fillColor: HexColor('#E8F1FF'),
-                  ),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                      borderRadius: BorderRadius.circular(10.r)),
+                  filled: true,
+                  fillColor: HexColor('#E8F1FF'),
+                ),
               ),
             ),
             Padding(
@@ -82,8 +104,10 @@ class _AdminUserState extends State<AdminUser> {
                 children: [
                   Text(
                     'Phone number',
-                    style: GoogleFonts.dmSans(color: Colors.white,
-                        fontWeight: FontWeight.bold, fontSize: 15.sp),
+                    style: GoogleFonts.dmSans(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15.sp),
                   ),
                 ],
               ),
@@ -96,12 +120,12 @@ class _AdminUserState extends State<AdminUser> {
               child: TextFormField(
                 initialValue: phoneNo,
                 decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10.r)),
-                    filled: true,
-                    fillColor: HexColor('#E8F1FF'),
-                    ),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                      borderRadius: BorderRadius.circular(10.r)),
+                  filled: true,
+                  fillColor: HexColor('#E8F1FF'),
+                ),
               ),
             ),
             Padding(
@@ -111,8 +135,9 @@ class _AdminUserState extends State<AdminUser> {
                   Text(
                     'Email address',
                     style: GoogleFonts.dmSans(
-                      color: Colors.white,
-                        fontWeight: FontWeight.bold, fontSize: 15.sp),
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15.sp),
                   ),
                 ],
               ),
@@ -125,12 +150,12 @@ class _AdminUserState extends State<AdminUser> {
               child: TextFormField(
                 initialValue: email,
                 decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10.r)),
-                    filled: true,
-                    fillColor: HexColor('#E8F1FF'),
-                   ),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                      borderRadius: BorderRadius.circular(10.r)),
+                  filled: true,
+                  fillColor: HexColor('#E8F1FF'),
+                ),
               ),
             ),
             SizedBox(
@@ -141,7 +166,7 @@ class _AdminUserState extends State<AdminUser> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.pop(context);
+                    _acceptStatus();
                   },
                   child: Container(
                     width: 130.w,
@@ -163,19 +188,24 @@ class _AdminUserState extends State<AdminUser> {
                 SizedBox(
                   width: 10.w,
                 ),
-                Container(
-                  width: 130.w,
-                  height: 45.h,
-                  decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(5.r)),
-                  child: Center(
-                    child: Text(
-                      'Reject',
-                      style: GoogleFonts.poppins(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 17.sp),
+                GestureDetector(
+                  onTap: () {
+                    _rejectStatus();
+                  },
+                  child: Container(
+                    width: 130.w,
+                    height: 45.h,
+                    decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(5.r)),
+                    child: Center(
+                      child: Text(
+                        'Reject',
+                        style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 17.sp),
+                      ),
                     ),
                   ),
                 )

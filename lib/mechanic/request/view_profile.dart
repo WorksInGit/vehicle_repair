@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:mech_doc/mechanic/bottom_nav.dart';
 import 'package:mech_doc/mechanic/request/edit_profile.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ViewProfile extends StatefulWidget {
   const ViewProfile({super.key});
@@ -12,20 +14,51 @@ class ViewProfile extends StatefulWidget {
   State<ViewProfile> createState() => _ViewProfileState();
 }
 
-class _ViewProfileState extends State<ViewProfile>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-
+class _ViewProfileState extends State<ViewProfile> {
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this);
+    _loadProfile();
   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+  String? mechId;
+  String? imageUrl;
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _userController = TextEditingController();
+  TextEditingController _phonoController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _expController = TextEditingController();
+  TextEditingController _locationController = TextEditingController();
+  TextEditingController _shopController = TextEditingController();
+  Future<void> _loadProfile() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String? id = preferences.getString('mechId');
+    if (id != null) {
+      setState(() {
+        mechId = id;
+      });
+      DocumentSnapshot doc = await FirebaseFirestore.instance
+          .collection('mechSignUp')
+          .doc(mechId)
+          .get();
+      if (doc.exists) {
+        setState(() {
+          imageUrl = doc['profile'];
+          _nameController.text = doc['username'];
+          _userController.text = doc['username'];
+          _phonoController.text = doc['phoneNumber'];
+          _emailController.text = doc['email'];
+          _expController.text = doc['experience'];
+          _locationController.text = doc['location'];
+          _shopController.text = doc['shopName'];
+        });
+      } else {
+        print('Doc not found');
+      }
+    } else {
+      print('User id not found in sharedpreferences');
+    }
+    return null;
   }
 
   @override
@@ -63,16 +96,18 @@ class _ViewProfileState extends State<ViewProfile>
                         ));
                       },
                       child: ImageIcon(
-                        color: Colors.white,
-                        AssetImage('assets/icons/edit.png')),
+                          color: Colors.white,
+                          AssetImage('assets/icons/edit.png')),
                     ),
                   )
                 ],
               ),
             ),
             CircleAvatar(
-              radius: 70.r,
-              backgroundImage: AssetImage('assets/icons/profile.png'),
+              radius: 50.r,
+              backgroundImage: imageUrl != null
+                  ? NetworkImage(imageUrl!)
+                  : AssetImage('assets/icons/person.png'),
             ),
             SizedBox(
               height: 20.h,
@@ -80,6 +115,9 @@ class _ViewProfileState extends State<ViewProfile>
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 40.w),
               child: TextFormField(
+                readOnly: true,
+                style: GoogleFonts.poppins(color: Colors.white),
+                controller: _nameController,
                 decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
@@ -99,6 +137,9 @@ class _ViewProfileState extends State<ViewProfile>
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 40.w),
               child: TextFormField(
+                readOnly: true,
+                style: GoogleFonts.poppins(color: Colors.white),
+                controller: _nameController,
                 decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
@@ -118,6 +159,9 @@ class _ViewProfileState extends State<ViewProfile>
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 40.w),
               child: TextFormField(
+                readOnly: true,
+                style: GoogleFonts.poppins(color: Colors.white),
+                controller: _phonoController,
                 decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
@@ -137,6 +181,9 @@ class _ViewProfileState extends State<ViewProfile>
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 40.w),
               child: TextFormField(
+                readOnly: true,
+                style: GoogleFonts.poppins(color: Colors.white),
+                controller: _emailController,
                 decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
@@ -156,6 +203,9 @@ class _ViewProfileState extends State<ViewProfile>
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 40.w),
               child: TextFormField(
+                readOnly: true,
+                style: GoogleFonts.poppins(color: Colors.white),
+                controller: _expController,
                 decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
@@ -175,6 +225,9 @@ class _ViewProfileState extends State<ViewProfile>
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 40.w),
               child: TextFormField(
+                readOnly: true,
+                style: GoogleFonts.poppins(color: Colors.white),
+                controller: _locationController,
                 decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
@@ -194,6 +247,9 @@ class _ViewProfileState extends State<ViewProfile>
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 40.w),
               child: TextFormField(
+                readOnly: true,
+                style: GoogleFonts.poppins(color: Colors.white),
+                controller: _shopController,
                 decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),

@@ -36,6 +36,14 @@ class _MechNotificationState extends State<MechNotification> {
           child: StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance.collection('notification').snapshots(),
             builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return Text('Error : ${snapshot.error}');
+              }
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                  child: CircularProgressIndicator(color: Colors.grey,),
+                );
+              }
               final notification = snapshot.data!.docs;
               return ListView.builder(
               itemCount: notification.length,

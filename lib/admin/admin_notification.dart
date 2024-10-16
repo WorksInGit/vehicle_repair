@@ -6,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
 import 'package:mech_doc/admin/add_notification.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class AdminNotification extends StatefulWidget {
   const AdminNotification({super.key});
@@ -15,6 +17,48 @@ class AdminNotification extends StatefulWidget {
 }
 
 class _AdminNotificationState extends State<AdminNotification> {
+  String? adminId;
+  String? imageUrl;
+
+  @override
+  void initState() {
+    super.initState();
+    getAdminId();
+  }
+
+  Future<String?> getAdminId() async {
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    String? id = preferences.getString('adminId');
+
+    if (id != null) {
+      setState(() {
+        adminId = id;
+      });
+      String? storedImageUrl = preferences.getString('imageUrl');
+      if (storedImageUrl != null) {
+        setState(() {
+          imageUrl = storedImageUrl;
+        });
+      } else {
+        DocumentSnapshot doc = await FirebaseFirestore.instance
+            .collection('adminLogin')
+            .doc(adminId)
+            .get();
+        if (doc.exists) {
+          setState(() {
+            imageUrl = doc['profile'];
+          });
+          preferences.setString('imageUrl', imageUrl!);
+        } else {
+          print('Doc not found');
+        }
+      }
+    } else {
+      print('Admin id not found in sharedpreferences');
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -27,9 +71,11 @@ class _AdminNotificationState extends State<AdminNotification> {
               child: Row(
                 children: [
                   CircleAvatar(
-                    radius: 25.r,
-                    backgroundImage: AssetImage('assets/icons/image.png'),
-                  ),
+                      radius: 25.r,
+                      backgroundImage: adminId != null && imageUrl != null
+                          ? NetworkImage(imageUrl!)
+                          : AssetImage('assets/icons/person.png')
+                              as ImageProvider),
                 ],
               ),
             ),
@@ -85,8 +131,7 @@ class _AdminNotificationState extends State<AdminNotification> {
                                   Text(
                                     formattedTime,
                                     style: GoogleFonts.poppins(
-                                      fontSize: 13.sp,
-                                        color: Colors.white),
+                                        fontSize: 13.sp, color: Colors.white),
                                   ),
                                 ],
                               )

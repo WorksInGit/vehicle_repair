@@ -18,63 +18,83 @@ class _UserTabState extends State<UserTab> {
     return StreamBuilder(
       stream: FirebaseFirestore.instance.collection('userSignUp').snapshots(),
       builder: (context, snapshot) {
-          if (snapshot.hasError) {
+        if (snapshot.hasError) {
           return Text('Error : ${snapshot.error}');
         }
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
-            child: 
-            CircularProgressIndicator(color: Colors.grey,),
+            child: CircularProgressIndicator(
+              color: Colors.grey,
+            ),
           );
         }
         final user = snapshot.data!.docs;
-        
+
         return ListView.builder(
           itemCount: user.length,
-        itemBuilder: (context, index) {
-          var userIndex = snapshot.data!.docs[index];
-          var userData = user[index].data() as Map<String, dynamic>;
-          return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 25.w),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => AdminUser(userIndex: userIndex),));
-              },
-              child: Card(
-                color: HexColor('3d495b'),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 20.w,
-                    ),
-                    Container(
-                      width: 60.w,
-                      height: 60.h,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100).r,
-                        image: DecorationImage(image: NetworkImage(userData['profile']),)
+          itemBuilder: (context, index) {
+            var userIndex = snapshot.data!.docs[index];
+            var userData = user[index].data() as Map<String, dynamic>;
+            return Padding(
+              padding: EdgeInsets.symmetric(horizontal: 25.w),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AdminUser(userIndex: userIndex),
+                      ));
+                },
+                child: Card(
+                  color: HexColor('3d495b'),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 20.w,
                       ),
-                    ),
-                     SizedBox(
-                      width: 40.w,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(userData['username'],style: GoogleFonts.poppins(fontWeight: FontWeight.w500,color: Colors.white),),
-                        Text(userData['location'],style: GoogleFonts.poppins(color: Colors.white),),
-                        Text(userData['phoneNumber'],style: GoogleFonts.poppins(color: Colors.white),),
-                        Text(userData['email'],style: GoogleFonts.poppins(color: Colors.white),)
-                      ],
-                    )
-                  ],
+                      Container(
+                        width: 60.w,
+                        height: 60.h,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100).r,
+                            image: DecorationImage(
+                              image: NetworkImage(userData['profile']),
+                            )),
+                      ),
+                      SizedBox(
+                        width: 40.w,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            userData['username'],
+                            style: GoogleFonts.poppins(
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white),
+                          ),
+                          Text(
+                            userData['location'],
+                            style: GoogleFonts.poppins(color: Colors.white),
+                          ),
+                          Text(
+                            userData['phoneNumber'],
+                            style: GoogleFonts.poppins(color: Colors.white),
+                          ),
+                          Text(
+                            userData['email'],
+                            style: GoogleFonts.poppins(color: Colors.white),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-          );
-        },
-      );
+            );
+          },
+        );
       },
     );
   }
